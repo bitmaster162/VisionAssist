@@ -1,0 +1,59 @@
+{
+  "schema_version": "visionassist.benchmark.market-indicator-formulas-r34.v1",
+  "manifest_id": "VA-R34-MARKET-INDICATORS-001",
+  "price_source": "pre_cutoff_completed_ohlcv_only",
+  "formulas": {
+    "atr_14": {
+      "period": 14,
+      "true_range": "max(high-low,abs(high-prev_close),abs(low-prev_close))",
+      "seed": "mean(first_14_true_ranges)",
+      "smoothing": "wilder"
+    },
+    "rsi_14": {
+      "period": 14,
+      "seed": "mean(first_14_gains_and_losses)",
+      "smoothing": "wilder",
+      "zero_loss": 100,
+      "zero_gain_and_loss": 50
+    },
+    "ema": {
+      "periods": [
+        20,
+        50,
+        200
+      ],
+      "alpha": "2/(period+1)",
+      "seed": "simple_mean(first_period_closes)"
+    },
+    "vwap": {
+      "price": "(high+low+close)/3",
+      "weight": "volume",
+      "window": "all_committed_rows"
+    },
+    "distance_to_ema_percent": "(last_close-ema)/ema*100",
+    "return_percent": "(last_close/reference_close-1)*100",
+    "volume_change_percent": "(last_volume/previous_volume-1)*100",
+    "volatility_regime": {
+      "input": "atr_percent",
+      "low_below": 1,
+      "medium_below": 3,
+      "labels": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    }
+  },
+  "numeric_tolerance": {
+    "absolute": 1e-9,
+    "relative": 1e-9
+  },
+  "missing_data_rule": "FAIL_CLOSED",
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

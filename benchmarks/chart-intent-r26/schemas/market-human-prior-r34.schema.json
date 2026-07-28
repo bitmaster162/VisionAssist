@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "visionassist.benchmark.market-human-prior-r34.schema.json",
+  "title": "VisionAssist R34 market human prior",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "outcome_forecast",
+    "confidence",
+    "authority"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "visionassist.benchmark.human-prior.r34.v1"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^MKT-R34-[0-9]{3}$"
+    },
+    "outcome_forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "abstain",
+        "probabilities",
+        "abstention_reason_code",
+        "abstention_reason"
+      ],
+      "properties": {
+        "abstain": {
+          "type": "boolean"
+        },
+        "probabilities": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3
+            }
+          ]
+        },
+        "abstention_reason_code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            null,
+            "INSUFFICIENT_DECISION_CONTEXT",
+            "EVIDENCE_CONTRADICTION",
+            "BLINDNESS_UNCERTAIN",
+            "OTHER_DECLARED"
+          ]
+        },
+        "abstention_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "authority": {
+      "type": "object"
+    }
+  }
+}

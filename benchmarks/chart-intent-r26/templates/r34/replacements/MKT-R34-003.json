@@ -1,0 +1,19 @@
+{
+  "schema_version": "visionassist.benchmark.market-replacement-template-r34.v1",
+  "template_status": "INCOMPLETE_NOT_FREEZABLE",
+  "case_id": "MKT-R34-003",
+  "capture_mode": "FORWARD_LOCKED_FULL_CONTEXT",
+  "bundle_schema": "schemas/market-evidence-bundle-r34.schema.json",
+  "formula_manifest": "schemas/market-indicator-formulas-r34.json",
+  "contains_case_observation": false,
+  "contains_human_prior": false,
+  "contains_ai_or_fusion": false,
+  "contains_outcome_or_reveal": false,
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}
