@@ -13,9 +13,24 @@ import {
 } from "./canonical-json.js";
 
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
-const CASE_PATTERN = /^MKT-R34-\d{3}$/;
 const TIMESTAMP_PATTERN =
   /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/;
+
+const R34_IDENTITY_PROFILE = Object.freeze({
+  track_id: "MARKET-R34",
+  case_pattern: /^MKT-R34-\d{3}$/,
+  case_hint: "MKT-R34-nnn",
+  receipt_schema:
+    "visionassist.benchmark.market-evidence-validation-receipt-r34.v1"
+});
+
+const R50_IDENTITY_PROFILE = Object.freeze({
+  track_id: "MARKET-R50",
+  case_pattern: /^MKT-R50-\d{3}$/,
+  case_hint: "MKT-R50-nnn",
+  receipt_schema:
+    "visionassist.product.market-evidence-validation-receipt-r50.v1"
+});
 
 const AUTHORITY = Object.freeze({
   decision_status: "DIAGNOSTIC_ONLY",
@@ -661,7 +676,7 @@ function validateTiming(bundle, violations) {
   return times;
 }
 
-function validateIdentity(bundle, violations) {
+function validateIdentity(bundle, violations, identityProfile) {
   if (bundle.schema_version !==
     "visionassist.benchmark.market-evidence-bundle-r34.v1") {
     addViolation(
@@ -672,20 +687,23 @@ function validateIdentity(bundle, violations) {
     );
   }
   requireString(bundle.batch_id, "batch_id", violations);
-  if (bundle.track_id !== "MARKET-R34") {
+  if (bundle.track_id !== identityProfile.track_id) {
     addViolation(
       violations,
       "MISSING_REQUIRED_CONTEXT",
       "track_id",
-      "track_id must be MARKET-R34"
+      `track_id must be ${identityProfile.track_id}`
     );
   }
-  if (typeof bundle.case_id !== "string" || !CASE_PATTERN.test(bundle.case_id)) {
+  if (
+    typeof bundle.case_id !== "string" ||
+    !identityProfile.case_pattern.test(bundle.case_id)
+  ) {
     addViolation(
       violations,
       "MISSING_REQUIRED_CONTEXT",
       "case_id",
-      "case_id must match MKT-R34-nnn"
+      `case_id must match ${identityProfile.case_hint}`
     );
   }
   if (bundle.capture_mode !== "FORWARD_LOCKED_FULL_CONTEXT") {
@@ -1679,9 +1697,14 @@ function validateLeakageAttestation(bundle, violations) {
   }
 }
 
-function buildFailureReceipt(bundle, violations, bundleSha256 = null) {
+function buildFailureReceipt(
+  bundle,
+  violations,
+  bundleSha256 = null,
+  identityProfile = R34_IDENTITY_PROFILE
+) {
   return {
-    schema_version: "visionassist.benchmark.market-evidence-validation-receipt-r34.v1",
+    schema_version: identityProfile.receipt_schema,
     market_evidence_status: "FAIL",
     case_id: bundle?.case_id ?? null,
     capture_mode: bundle?.capture_mode ?? null,
@@ -1693,7 +1716,7 @@ function buildFailureReceipt(bundle, violations, bundleSha256 = null) {
   };
 }
 
-export function verifyMarketInputR34(caseDirectory) {
+function verifyMarketInputProfile(caseDirectory, identityProfile) {
   const resolvedCaseDirectory = path.resolve(caseDirectory);
   const violations = [];
   if (!existsSync(resolvedCaseDirectory) ||
@@ -1702,7 +1725,7 @@ export function verifyMarketInputR34(caseDirectory) {
       code: "MISSING_REQUIRED_CONTEXT",
       path: "case_directory",
       message: "case directory is missing"
-    }]);
+    }], null, identityProfile);
     throw new MarketEvidenceGateError(
       "R34 market evidence gate failed.",
       receipt.violations,
@@ -1723,7 +1746,7 @@ export function verifyMarketInputR34(caseDirectory) {
       code: "MISSING_REQUIRED_CONTEXT",
       path: "market_evidence_bundle.json",
       message: "market evidence bundle is missing"
-    }]);
+    }], null, identityProfile);
     throw new MarketEvidenceGateError(
       "R34 market evidence gate failed.",
       receipt.violations,
@@ -1739,7 +1762,7 @@ export function verifyMarketInputR34(caseDirectory) {
       code: "MISSING_REQUIRED_CONTEXT",
       path: "market_evidence_bundle.json",
       message: "market evidence bundle is not valid JSON"
-    }]);
+    }], null, identityProfile);
     throw new MarketEvidenceGateError(
       "R34 market evidence gate failed.",
       receipt.violations,
@@ -1749,7 +1772,7 @@ export function verifyMarketInputR34(caseDirectory) {
   const bundleSha256 = sha256Json(bundle);
 
   requireExactKeys(bundle, TOP_LEVEL_KEYS, "bundle", violations);
-  validateIdentity(bundle, violations);
+  validateIdentity(bundle, violations, identityProfile);
   const times = validateTiming(bundle, violations);
   validateApplicability(bundle, times, violations);
   scanForbiddenKeys(bundle, violations);
@@ -1779,7 +1802,12 @@ export function verifyMarketInputR34(caseDirectory) {
   validateAuthority(bundle.authority, violations);
 
   if (violations.length > 0) {
-    const receipt = buildFailureReceipt(bundle, violations, bundleSha256);
+    const receipt = buildFailureReceipt(
+      bundle,
+      violations,
+      bundleSha256,
+      identityProfile
+    );
     throw new MarketEvidenceGateError(
       `R34 market evidence gate failed with ${violations.length} violation(s).`,
       violations,
@@ -1788,7 +1816,7 @@ export function verifyMarketInputR34(caseDirectory) {
   }
 
   return {
-    schema_version: "visionassist.benchmark.market-evidence-validation-receipt-r34.v1",
+    schema_version: identityProfile.receipt_schema,
     market_evidence_status: "PASS",
     case_id: bundle.case_id,
     capture_mode: bundle.capture_mode,
@@ -1807,4 +1835,12 @@ export function verifyMarketInputR34(caseDirectory) {
     case_phase: "CASE_FROZEN",
     authority: AUTHORITY
   };
+}
+
+export function verifyMarketInputR34(caseDirectory) {
+  return verifyMarketInputProfile(caseDirectory, R34_IDENTITY_PROFILE);
+}
+
+export function verifyMarketInputR50(caseDirectory) {
+  return verifyMarketInputProfile(caseDirectory, R50_IDENTITY_PROFILE);
 }

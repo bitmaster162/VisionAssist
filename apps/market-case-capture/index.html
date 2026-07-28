@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="VisionAssist R50 local forward-locked market case capture"
+    >
+    <title>VisionAssist / Forward Desk</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">К рабочей области</a>
+
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">VisionAssist · operator product</p>
+        <h1>Forward<br>Desk</h1>
+      </div>
+      <div class="authority-stack">
+        <span class="authority-badge">NO VAULT · NO TRADE</span>
+        <span id="runtime-state" class="runtime-state">Проверяю loopback runtime...</span>
+      </div>
+    </header>
+
+    <div class="desk-shell">
+      <aside class="case-rail" aria-labelledby="cases-title">
+        <div class="rail-heading">
+          <p class="kicker">Three slots only</p>
+          <h2 id="cases-title">Кейсы</h2>
+        </div>
+        <div id="case-list" class="case-list"></div>
+
+        <section class="boundary-card" aria-labelledby="boundary-title">
+          <p class="kicker">Hard boundary</p>
+          <h3 id="boundary-title">Недоступно</h3>
+          <ul>
+            <li>Outcome vault</li>
+            <li>AI execution</li>
+            <li>Fusion / baseline</li>
+            <li>Reveal / scoring</li>
+          </ul>
+          <strong>NO_ACTION · HOLD · DENY</strong>
+        </section>
+      </aside>
+
+      <main id="main" class="workspace">
+        <section class="case-header" aria-live="polite">
+          <div>
+            <p class="kicker">Active ledger</p>
+            <h2 id="active-case">MKT-R50-001</h2>
+          </div>
+          <span id="active-phase" class="phase-badge">EMPTY</span>
+        </section>
+
+        <section id="start-panel" class="step-card">
+          <div class="step-index">01</div>
+          <div class="step-content">
+            <div class="step-heading">
+              <div>
+                <p class="kicker">Freeze before capture</p>
+                <h2>Открыть слот</h2>
+              </div>
+              <span class="step-status" id="start-status">Ожидает</span>
+            </div>
+            <p class="lead">
+              Сначала зафиксируйте применимость источников. После открытия
+              изменить матрицу нельзя.
+            </p>
+            <div class="toggle-grid">
+              <label class="check-card">
+                <input id="derivatives-applicable" type="checkbox" checked>
+                <span>
+                  <strong>Derivatives</strong>
+                  <small>OI, funding, basis, liquidations</small>
+                </span>
+              </label>
+              <label class="check-card">
+                <input id="token-applicable" type="checkbox" checked>
+                <span>
+                  <strong>Token metrics</strong>
+                  <small>Market cap, FDV, supply</small>
+                </span>
+              </label>
+              <div class="check-card locked">
+                <span class="lock-mark" aria-hidden="true">✓</span>
+                <span>
+                  <strong>Event search</strong>
+                  <small>Всегда обязателен, даже если результат пуст</small>
+                </span>
+              </div>
+            </div>
+            <button id="open-slot" class="primary-action" type="button">
+              Открыть выбранный слот
+            </button>
+          </div>
+        </section>
+
+        <section id="evidence-panel" class="step-card is-locked">
+          <div class="step-index">02</div>
+          <div class="step-content">
+            <div class="step-heading">
+              <div>
+                <p class="kicker">Full context in</p>
+                <h2>Evidence bundle</h2>
+              </div>
+              <span class="step-status" id="evidence-status">Заблокирован</span>
+            </div>
+            <p class="lead">
+              Загрузите JSON ввода или заполните шаблон. Индикаторы и SHA-256
+              рассчитываются локально; будущие данные отклоняются.
+            </p>
+
+            <div class="tool-row">
+              <label class="file-action">
+                <input id="capture-file" type="file" accept="application/json,.json">
+                <span>Загрузить JSON</span>
+              </label>
+              <button id="load-template" class="secondary-action" type="button">
+                Получить пустой шаблон
+              </button>
+              <button id="download-template" class="ghost-action" type="button">
+                Скачать шаблон
+              </button>
+            </div>
+
+            <label class="editor-label" for="capture-json">
+              <span>Capture input</span>
+              <textarea
+                id="capture-json"
+                rows="18"
+                spellcheck="false"
+                placeholder="Откройте слот и загрузите шаблон."
+              ></textarea>
+            </label>
+
+            <div class="evidence-meter" aria-label="Краткая проверка комплекта">
+              <article>
+                <span>Timeline</span>
+                <strong id="timeline-meter">—</strong>
+              </article>
+              <article>
+                <span>OHLCV</span>
+                <strong id="ohlcv-meter">0 rows</strong>
+              </article>
+              <article>
+                <span>Derivatives</span>
+                <strong id="derivatives-meter">—</strong>
+              </article>
+              <article>
+                <span>Articles / events</span>
+                <strong id="events-meter">0 / 0</strong>
+              </article>
+            </div>
+
+            <div class="action-row">
+              <button id="validate-evidence" class="secondary-action" type="button">
+                Проверить evidence
+              </button>
+              <button id="freeze-evidence" class="primary-action" type="button">
+                Заморозить evidence
+              </button>
+            </div>
+            <div id="evidence-result" class="result-card neutral" aria-live="polite">
+              Validator покажет точный путь каждого недостающего свидетельства.
+            </div>
+          </div>
+        </section>
+
+        <section id="prior-panel" class="step-card is-locked">
+          <div class="step-index">03</div>
+          <div class="step-content">
+            <div class="step-heading">
+              <div>
+                <p class="kicker">Human before AI</p>
+                <h2>Human prior</h2>
+              </div>
+              <span class="step-status" id="prior-status">Заблокирован</span>
+            </div>
+            <p class="lead">
+              Запишите исходную интерпретацию, две конкурирующие гипотезы,
+              контрдоказательства и условия опровержения до любого AI-ответа.
+            </p>
+
+            <label>
+              <span>Исходная интерпретация</span>
+              <textarea id="interpretation" rows="3"></textarea>
+            </label>
+
+            <div id="hypotheses" class="hypothesis-grid">
+              <fieldset data-hypothesis="1">
+                <legend>Гипотеза H1</legend>
+                <label><span>Формулировка</span><input data-field="statement"></label>
+                <label><span>Evidence</span><textarea data-field="evidence" rows="2"></textarea></label>
+                <label><span>Counterevidence</span><textarea data-field="counterevidence" rows="2"></textarea></label>
+                <label><span>Invalidation</span><textarea data-field="invalidation_condition" rows="2"></textarea></label>
+              </fieldset>
+              <fieldset data-hypothesis="2">
+                <legend>Гипотеза H2</legend>
+                <label><span>Формулировка</span><input data-field="statement"></label>
+                <label><span>Evidence</span><textarea data-field="evidence" rows="2"></textarea></label>
+                <label><span>Counterevidence</span><textarea data-field="counterevidence" rows="2"></textarea></label>
+                <label><span>Invalidation</span><textarea data-field="invalidation_condition" rows="2"></textarea></label>
+              </fieldset>
+            </div>
+
+            <div class="forecast-grid">
+              <label>
+                <span>P(up)</span>
+                <input id="prob-up" type="number" min="0" max="1" step="0.01" value="0.34">
+              </label>
+              <label>
+                <span>P(down)</span>
+                <input id="prob-down" type="number" min="0" max="1" step="0.01" value="0.33">
+              </label>
+              <label>
+                <span>P(range)</span>
+                <input id="prob-range" type="number" min="0" max="1" step="0.01" value="0.33">
+              </label>
+              <label>
+                <span>Уверенность: <output id="confidence-output">0.50</output></span>
+                <input id="prior-confidence" type="range" min="0" max="1" step="0.05" value="0.50">
+              </label>
+            </div>
+
+            <label class="check-card abstain-row">
+              <input id="abstain" type="checkbox">
+              <span>
+                <strong>INSUFFICIENT_DECISION_CONTEXT</strong>
+                <small>Честно отказаться от вероятностей при противоречивом контексте.</small>
+              </span>
+            </label>
+            <div id="abstain-fields" class="abstain-fields" hidden>
+              <label>
+                <span>Код причины</span>
+                <select id="abstention-code">
+                  <option value="INSUFFICIENT_DECISION_CONTEXT">INSUFFICIENT_DECISION_CONTEXT</option>
+                  <option value="EVIDENCE_CONTRADICTION">EVIDENCE_CONTRADICTION</option>
+                  <option value="BLINDNESS_UNCERTAIN">BLINDNESS_UNCERTAIN</option>
+                  <option value="OTHER_DECLARED">OTHER_DECLARED</option>
+                </select>
+              </label>
+              <label>
+                <span>Причина</span>
+                <textarea id="abstention-reason" rows="2"></textarea>
+              </label>
+            </div>
+
+            <div class="attestation-grid">
+              <label class="attestation">
+                <input id="outcome-unseen" type="checkbox">
+                <span>Я не видел будущий outcome.</span>
+              </label>
+              <label class="attestation">
+                <input id="ai-unseen" type="checkbox">
+                <span>Я не видел AI-разбор.</span>
+              </label>
+            </div>
+
+            <div class="action-row">
+              <button id="validate-prior" class="secondary-action" type="button">
+                Проверить prior
+              </button>
+              <button id="freeze-prior" class="primary-action" type="button">
+                HUMAN_PRIOR_FROZEN
+              </button>
+            </div>
+            <div id="prior-result" class="result-card neutral" aria-live="polite">
+              Prior останется физически отдельно от evidence и AI-пакета.
+            </div>
+          </div>
+        </section>
+
+        <section id="export-panel" class="step-card is-locked">
+          <div class="step-index">04</div>
+          <div class="step-content">
+            <div class="step-heading">
+              <div>
+                <p class="kicker">Separated export</p>
+                <h2>AI-runner packet</h2>
+              </div>
+              <span class="step-status" id="export-status">Заблокирован</span>
+            </div>
+            <p class="lead">
+              Экспорт содержит evidence и его receipt. Human prior, outcome,
+              AI/fusion, baseline, reveal и scoring исключены.
+            </p>
+            <div class="action-row">
+              <button id="export-packet" class="primary-action" type="button">
+                Создать и скачать пакет
+              </button>
+            </div>
+            <div id="export-result" class="result-card neutral" aria-live="polite">
+              Экспорт не запускает модель.
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <span>FORWARD_LOCKED_FULL_CONTEXT</span>
+      <span>Local loopback · no credentials · no capital</span>
+    </footer>
+  </body>
+</html>

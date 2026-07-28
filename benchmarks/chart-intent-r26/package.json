@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Offline proof harness for chart intent and human-AI fusion.",
   "scripts": {
-    "test": "node --test ./test/ai-runner.test.js ./test/contract.test.js ./test/custody-snapshot.test.js ./test/human-prior.test.js ./test/intake.test.js ./test/lifecycle.test.js ./test/market-corpus.test.js ./test/market-evidence-r34.test.js ./test/metrics.test.js ./test/visual-corpus.test.js",
+    "test": "node --test ./test/ai-runner.test.js ./test/contract.test.js ./test/custody-snapshot.test.js ./test/human-prior.test.js ./test/intake.test.js ./test/lifecycle.test.js ./test/market-corpus.test.js ./test/market-evidence-r34.test.js ./test/metrics.test.js ./test/operator-case-r50.test.js ./test/visual-corpus.test.js",
     "status": "node ./tools/benchmark.js status",
     "verify:market-pool": "node ./tools/benchmark.js verify-market-pool",
     "verify:market-corpus": "node ./tools/benchmark.js verify-market-corpus",
@@ -14,6 +14,7 @@
     "verify:visual-corpus": "node ./tools/benchmark.js verify-visual-corpus",
     "verify:custody": "node ./tools/benchmark.js verify-custody",
     "verify": "node ./tools/benchmark.js verify",
+    "start:r50": "node ../../apps/market-case-capture/server.js",
     "score": "node ./tools/benchmark.js score"
   }
 }
