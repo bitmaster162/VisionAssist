@@ -1,0 +1,16 @@
+{
+  "project": "VISIONASSIST_INTENT_CONTRACT_R26",
+  "generated_at_utc": "2026-07-26T21:19:21Z",
+  "baseline_commit": "ad452af71d47b553dcfd730f0bef71006d293f43",
+  "baseline_tree": "71510a12d0ea61fbc464d113be687341ed61c6de",
+  "final_commit": "5b6ba5f1ca9c856141b14ec2bf01f8218dea873c",
+  "final_tree": "7de6d67578124b4b3c8b5d78434f54e0d8ad6d99",
+  "bundle": "VISIONASSIST_INTENT_CONTRACT_R26.bundle",
+  "bundle_sha256": "5dc0750659ac9586e93b3e086c6ef0e2e5f8f51a450a60abe9fc7371a8fdba89",
+  "original_tests": "10/10 PASS",
+  "replay_tests": "10/10 PASS",
+  "source_mutation": false,
+  "can_trade": false,
+  "capital_permission": "DENY"
+}
+

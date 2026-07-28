@@ -1,0 +1,45 @@
+{
+  "schema_version": "visionassist.scope-correction-manifest.v1",
+  "manifest_id": "VA-B001-SCOPE-CORRECTION-20260727T184833Z",
+  "recorded_at": "2026-07-27T18:48:33Z",
+  "batch_id": "human-prior-batch-001",
+  "relation": {
+    "type": "APPEND_ONLY_DISPOSITION_OVERLAY",
+    "prior_manifest": "VISIONASSIST_BATCH_001_OPERATOR_PACKAGE_MANIFEST_2026-07-28.json",
+    "prior_manifest_sha256": "5088114659d9389ba97ccdb15e370b2f437474a2bbc4987e2d266202f67b686e",
+    "prior_manifest_modified": false
+  },
+  "files": [
+    {
+      "name": "VISIONASSIST_BATCH_001_SCOPE_DISPOSITION_2026-07-28.json",
+      "sha256": "ea6a8a2385f964a4bd58f1530c58d7e79a774a1cbc28f61e4f2b70d6b16dd7f1"
+    },
+    {
+      "name": "VISIONASSIST_R34_MARKET_EVIDENCE_REVISION_SPEC_2026-07-28.md",
+      "sha256": "0f9e3b8809549c2dfc8d6eb3c5322a5da572cc578f1776f573e9db410568c103"
+    }
+  ],
+  "disposition": {
+    "mixed_batch_001": "HOLD",
+    "market_cases": "HOLD",
+    "market_design": "REVISE",
+    "visual_cases": "HOLD_PENDING_SEPARATE_VISUAL_ONLY_MANIFEST"
+  },
+  "case_state_changed": false,
+  "human_prior_submitted": false,
+  "runs": {
+    "ai": false,
+    "fusion": false,
+    "baseline": false,
+    "reveal": false,
+    "adjudication": false,
+    "scoring": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

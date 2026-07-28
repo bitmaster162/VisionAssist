@@ -1,0 +1,3 @@
+case_id,domain,split,candidate_id,protocol_id,source_family,stratum,timeframe,evidence_sha256,outcome_commitment_sha256,phase,chain_sha256
+MKT-001,market,development,,,,,,,,MISSING,
+VIS-001,non_market_visual,development,,,,,,,,MISSING,

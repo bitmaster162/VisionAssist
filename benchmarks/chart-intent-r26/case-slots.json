@@ -1,0 +1,42 @@
+{
+  "schema_version": "visionassist.benchmark.case-slots.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "slot_groups": [
+    {
+      "prefix": "MKT",
+      "domain": "market",
+      "count": 60,
+      "development_range": [
+        1,
+        45
+      ],
+      "blinded_holdout_range": [
+        46,
+        60
+      ],
+      "allowed_modalities": [
+        "chart_image",
+        "dashboard"
+      ]
+    },
+    {
+      "prefix": "VIS",
+      "domain": "non_market_visual",
+      "count": 15,
+      "development_range": [
+        1,
+        10
+      ],
+      "blinded_holdout_range": [
+        11,
+        15
+      ],
+      "allowed_modalities": [
+        "scene_image",
+        "document",
+        "ui",
+        "dashboard"
+      ]
+    }
+  ]
+}

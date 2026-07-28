@@ -1,0 +1,22 @@
+{
+  "schema_version": "visionassist.benchmark.operator-binding.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "binding_id": "VA-B001-VISUAL-HUMAN_OPERATOR-20260727T183656Z",
+  "frozen_role_id": "r29-visual-analyst-001",
+  "role": "human_analyst",
+  "operator_pseudonym": "HUMAN_OPERATOR-001",
+  "cohort_scope": [
+    "VIS-001",
+    "VIS-002"
+  ],
+  "attested_at": "2026-07-27T18:36:56Z",
+  "attestations": {
+    "is_not_outcome_custodian": true,
+    "is_not_adjudicator": true,
+    "had_no_outcome_vault_access": true,
+    "will_record_prior_before_ai_access": true
+  },
+  "attestation_method": "direct_account_chat_attestation_with_external_receipt",
+  "signature_ref": "RESTRICTED_ATTESTATION_REFERENCE",
+  "storage_boundary": "Store the completed binding outside the public repository because it may link a pseudonym to a real person."
+}

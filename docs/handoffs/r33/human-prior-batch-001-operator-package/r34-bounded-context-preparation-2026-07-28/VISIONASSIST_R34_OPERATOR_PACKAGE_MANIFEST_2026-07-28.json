@@ -1,0 +1,192 @@
+{
+  "schema_version": "visionassist.operator-preparation-package-manifest.v1",
+  "manifest_id": "VA-R34-OPERATOR-PREPARATION-20260728",
+  "created_at": "2026-07-28T09:11:31Z",
+  "status": "SEALED_PREPARATION_ONLY_EXECUTION_BLOCKED",
+  "package_scope": {
+    "hanri_candidate_review": true,
+    "visionassist_five_slot_operator_preparation": true,
+    "market_track": "MARKET-R34-DEV-001",
+    "visual_track": "VISUAL-CONTROL-R34",
+    "payload_count_excluding_manifest_and_sidecar": 10,
+    "automatic_application_authorized": false
+  },
+  "source_readbacks": [
+    {
+      "title": "latest_human_digest.md",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE",
+      "observed_run_id": "20260728T085659Z_d745f170",
+      "observed_modified_at": "2026-07-28T08:57:04.751Z"
+    },
+    {
+      "title": "VISIONASSIST_R29_P1_HANDOFF_2026-07-27.md",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE",
+      "observed_modified_at": "2026-07-27T16:30:22.354Z"
+    },
+    {
+      "title": "VISIONASSIST_R33_ACCEPTED_HANDOFF",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE"
+    },
+    {
+      "title": "VISIONASSIST_R34_MARKET_EVIDENCE_REVISION",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE",
+      "sha256": "0f9e3b8809549c2dfc8d6eb3c5322a5da572cc578f1776f573e9db410568c103"
+    },
+    {
+      "title": "VISIONASSIST_ORIGINAL_BATCH_MANIFEST",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE"
+    },
+    {
+      "title": "VISIONASSIST_ORIGINAL_OPERATOR_PACKET",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE"
+    },
+    {
+      "title": "HANRI_DECISIONS_DEDUPED.md",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE"
+    },
+    {
+      "title": "HANRI_R28_HUMAN_OPERATOR_DECISION_2026-07-28.json",
+      "drive_file_id": "RESTRICTED_SOURCE_REFERENCE",
+      "sha256": "bcee773fcfdd404b7ee9be440ec647d1a3428b6c9e0a66a08cbc6137bc445479"
+    }
+  ],
+  "sealed_findings": {
+    "hanri": {
+      "semantic_decisions": 1,
+      "candidate_verdicts": {
+        "C-23d1b14c602d7564762c": "ACCEPT_CANONICAL",
+        "C-537663b99e7ff9c862a5": "REJECT_DUPLICATE_ONLY"
+      },
+      "raw_byte_identity_claimed": false,
+      "materially_distinct_evidence_or_scope_presented": false,
+      "registered_or_applied": false
+    },
+    "visionassist": {
+      "legacy_market_cases": {
+        "case_ids": [
+          "MKT-001",
+          "MKT-002",
+          "MKT-003"
+        ],
+        "state": "HOLD_UNCHANGED_CASE_FROZEN",
+        "reason": "Each reviewed evidence folder contains only source.png and lacks bounded structured market context."
+      },
+      "replacement_market_slots": {
+        "case_ids": [
+          "MKT-R34-001",
+          "MKT-R34-002",
+          "MKT-R34-003"
+        ],
+        "state": "SLOT_RESERVED_NO_CASE"
+      },
+      "visual_control_cases": {
+        "case_ids": [
+          "VIS-001",
+          "VIS-002"
+        ],
+        "state": "HOLD_PENDING_SEPARATE_PREFLIGHT"
+      },
+      "tracks_comparable_or_poolable": false
+    }
+  },
+  "payloads": [
+    {
+      "file_name": "HANRI_R28_TWO_CANDIDATE_VERDICTS_2026-07-28.md",
+      "size_bytes": 4674,
+      "sha256": "804c4d99d87e66026ef9f8265eb50cc2f89325ad0dc7b2bc91700c01d8cfe40d",
+      "status": "REVIEW_ONLY"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_CRYPTO_PERP_CONTEXT_PROFILE_DRAFT_2026-07-28.json",
+      "size_bytes": 5478,
+      "sha256": "3d23aed26025fe782d6775f5e183404efee73c0e3e3390f0b18d0d134c540fbc",
+      "status": "DRAFT_NOT_APPROVED_NOT_NORMATIVE"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_EXTERNAL_RECEIPT_CONTRACT_DRAFT_2026-07-28.json",
+      "size_bytes": 10451,
+      "sha256": "e1c154aa0cdff11e5e70e30487d941716636960ad503b60aae11044a84b4991c",
+      "status": "DRAFT_NOT_IMPLEMENTED"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_FIVE_CASE_OPERATOR_PACKET_2026-07-28.md",
+      "size_bytes": 24561,
+      "sha256": "0c492b50e88bd0ee54495a444674ec5966db2c69f55eb5a3554f150ae8eaedf9",
+      "status": "PREPARATION_ONLY_EXECUTION_BLOCKED"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_MARKET_BATCH_DRAFT_2026-07-28.json",
+      "size_bytes": 5710,
+      "sha256": "1abaa744529710fc3b260701c6327bcc9071d086de66362247f0ca769dd7ed29",
+      "status": "PREPARATION_ONLY_NOT_EXECUTABLE"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_MARKET_EVIDENCE_BUNDLE_TEMPLATE_2026-07-28.json",
+      "size_bytes": 9035,
+      "sha256": "b361b3149f3969e30c951c189cc7b6d3620ffd4da9286b63a0f0c9145b51ff16",
+      "status": "INCOMPLETE_NOT_FREEZABLE"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_MARKET_HUMAN_PRIOR_TEMPLATE_2026-07-28.json",
+      "size_bytes": 1531,
+      "sha256": "acb91e87ec821db73b4e5d730fe572cf6bfa65407ca65a9ffc483c7afbc036c8",
+      "status": "BLANK_INVALID_UNTIL_MANUALLY_COMPLETED"
+    },
+    {
+      "file_name": "VISIONASSIST_R34_MARKET_HUMAN_PRIOR_VALIDATION_CONTRACT_2026-07-28.json",
+      "size_bytes": 4242,
+      "sha256": "5f8f3e00f91966c13895f331779ca787752b1fde0dac1dbfec67de0c7ceb5f2b",
+      "status": "DRAFT_NOT_IMPLEMENTED"
+    },
+    {
+      "file_name": "VISIONASSIST_VISUAL_HUMAN_PRIOR_V1_TEMPLATE_2026-07-28.json",
+      "size_bytes": 641,
+      "sha256": "28a70747dbed67d4295673aee1dbe91093ed6e2a6f1e0654793ce216b62f30c8",
+      "status": "BLANK_FROZEN_V1_SHAPE"
+    },
+    {
+      "file_name": "VISIONASSIST_VISUAL_ONLY_BATCH_001_MANIFEST_2026-07-28.json",
+      "size_bytes": 2697,
+      "sha256": "62641acee1cbd43ddceb49eb13566d9ddae36ac852c9c5ba7cd789565de4806d",
+      "status": "PREFLIGHT_ONLY_SUBMISSION_BLOCKED"
+    }
+  ],
+  "validation": {
+    "json_syntax": "PASS",
+    "critical_group_identity": "PASS",
+    "market_prior_schema_contract": "PASS",
+    "visual_v1_exact_key_set": "PASS",
+    "receipt_chain_scope_and_order": "PASS",
+    "pre_capture_selection_freeze_and_identity_equality": "PASS",
+    "fail_closed_draft_state": "PASS",
+    "forbidden_trading_authority_scan": "PASS",
+    "independent_json_audit": "PASS",
+    "independent_adversarial_seal_review": "PASS",
+    "independent_final_seal_review": "PASS",
+    "note": "These checks validate this preparation package, not market data, implementation, a case, a prior, or model performance."
+  },
+  "execution_state": {
+    "git_baseline_verified": false,
+    "market_cases_created": 0,
+    "market_human_priors_submitted": 0,
+    "visual_human_priors_submitted": 0,
+    "hanri_changes_registered_or_applied": false,
+    "ai_run": false,
+    "fusion_run": false,
+    "baseline_run": false,
+    "reveal_run": false,
+    "adjudication_run": false,
+    "scoring_run": false,
+    "official_score_available": false,
+    "legacy_case_bytes_modified": false
+  },
+  "drive_destination_parent_folder_id": "1w0ynrhBUNukar5BjHHBGYCor2Zf_hMlB",
+  "self_hash_rule": "The manifest SHA-256 is external and stored in the sidecar; the manifest does not contain a hash of its own final bytes.",
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

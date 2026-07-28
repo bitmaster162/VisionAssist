@@ -1,0 +1,75 @@
+{
+  "schema_version": "visionassist.release-profiles.v1",
+  "lineage_contract": "visionassist.lineage.r29",
+  "default_runtime_profile": "intent-r26",
+  "profiles": {
+    "android-pilot": {
+      "kind": "runtime",
+      "portfolio_role": "OPTIONAL_ACCESSIBILITY_ADAPTER",
+      "status": "PARKED_PROOF_SLICE",
+      "capabilities": {
+        "describe": true,
+        "ocr": false,
+        "realtime": false,
+        "intent": false,
+        "memory": false,
+        "navigation": false,
+        "billing": false
+      }
+    },
+    "product-dev": {
+      "kind": "runtime",
+      "portfolio_role": "INTEGRATION_SANDBOX",
+      "status": "PREPARED_NOT_PILOTED",
+      "capabilities": {
+        "describe": true,
+        "ocr": true,
+        "realtime": true,
+        "intent": true,
+        "memory": false,
+        "navigation": false,
+        "billing": false
+      }
+    },
+    "intent-r26": {
+      "kind": "runtime",
+      "portfolio_role": "CORE_PERCEPTION_RUNTIME",
+      "status": "ACTIVE_CORE_DIAGNOSTIC_MODULE",
+      "capabilities": {
+        "describe": false,
+        "ocr": false,
+        "realtime": false,
+        "intent": true,
+        "action_authority": false
+      }
+    },
+    "research-r26-benchmark": {
+      "kind": "offline-research",
+      "portfolio_role": "PRIMARY_EVIDENCE_GATE",
+      "priority": "P1",
+      "status": "CORPUS_FROZEN_75_OF_75_ANNOTATION_PENDING",
+      "capabilities": {
+        "chart_intent_benchmark": true,
+        "human_ai_fusion": true,
+        "runtime_import": true,
+        "action_authority": false,
+        "frozen_market_cases": 60,
+        "frozen_non_market_cases": 15,
+        "non_market_evidence_role": "SYNTHETIC_NON_MARKET_CONTROL",
+        "natural_scene_generality": false
+      }
+    },
+    "future-product": {
+      "kind": "roadmap",
+      "portfolio_role": "ROADMAP_NOT_CURRENT_CANON",
+      "status": "NOT_IMPLEMENTED",
+      "capabilities": {
+        "on_device_ocr": false,
+        "user_memory": false,
+        "hitl": false,
+        "scam_detection": false,
+        "navigation_assistance": false
+      }
+    }
+  }
+}

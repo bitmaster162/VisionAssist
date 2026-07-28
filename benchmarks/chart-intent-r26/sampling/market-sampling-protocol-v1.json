@@ -1,0 +1,56 @@
+{
+  "schema_version": "visionassist.benchmark.sampling-protocol.v1",
+  "protocol_id": "market-calendar-stratified-v1",
+  "status": "FROZEN",
+  "frozen_at": "2026-07-27T15:36:27.945Z",
+  "source": {
+    "provider": "Binance",
+    "market": "spot",
+    "endpoint": "https://api.binance.com/api/v3/klines",
+    "symbols_count": 5,
+    "intervals": [
+      "15m",
+      "1h",
+      "4h"
+    ]
+  },
+  "corpus": {
+    "case_count": 60,
+    "visible_bars_per_case": 80,
+    "outcome_bars_per_case": 20,
+    "development_slots": "MKT-001..045",
+    "blinded_holdout_slots": "MKT-046..060",
+    "temporal_strata": [
+      "2024-q1",
+      "2024-q2",
+      "2024-q3",
+      "2024-q4"
+    ]
+  },
+  "selection": {
+    "method": "One cutoff per symbol, interval, and calendar-quarter stratum; hidden-seed SHA-256 selects cutoffs, one holdout quarter per symbol and interval, and an opaque slot permutation.",
+    "price_or_outcome_fields_used": false,
+    "hidden_seed_custodian_only": true,
+    "slot_to_source_mapping_public": false,
+    "seed_commitment_sha256": "4801eca9e812c91eeab5ccfd8ae65e213a6bae280e67d0c83ed7d47e7e34663a",
+    "candidate_pool_commitment_sha256": "b476622aa9880e9201fa711ce15bff83fa8976893c945ca8ad10af784c2d33a6",
+    "selection_code_version": "visionassist-market-selection-v1"
+  },
+  "outcome": {
+    "labels": [
+      "up",
+      "down",
+      "range"
+    ],
+    "horizon": "next 20 completed bars",
+    "resolution_rule": "Compare final close at bar 20 with cutoff close. Up/down requires an absolute move of at least max(0.5 * visible ATR14, 0.2% of cutoff close); otherwise range.",
+    "should_abstain_rule": "True only when the source extract is incomplete, non-consecutive, non-finite, or the rendered evidence cannot be validated."
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

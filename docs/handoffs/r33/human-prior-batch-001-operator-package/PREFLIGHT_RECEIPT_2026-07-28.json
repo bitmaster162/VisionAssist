@@ -1,0 +1,93 @@
+{
+  "schema_version": "visionassist.operator-preflight.v1",
+  "preflight_id": "VA-R33-BATCH-001-20260727T175628Z",
+  "recorded_at": "2026-07-27T17:56:28Z",
+  "batch_id": "human-prior-batch-001",
+  "source_handoff": {
+    "file_id": "RESTRICTED_SOURCE_REFERENCE",
+    "status": "READY_FOR_EXTERNAL_HUMAN_PRIOR_OPERATOR",
+    "r29_handoff_sha256": "5a4411151673d7afee18d239418c05ee448600a7132db69c3c7ed5d6e0721428"
+  },
+  "visible_drive_preflight": {
+    "status": "PASS",
+    "case_count": 5,
+    "all_development": true,
+    "all_case_frozen": true,
+    "all_receipt_chain_length": 1,
+    "all_last_receipt_kind": "case",
+    "all_evidence_hashes_match_batch_manifest": true,
+    "future_artifacts_observed": 0,
+    "authority": {
+      "decision_status": "DIAGNOSTIC_ONLY",
+      "action_code": "NO_ACTION",
+      "execution_permission": "HOLD",
+      "capital_permission": "DENY",
+      "can_trade": false
+    }
+  },
+  "cases": [
+    {
+      "case_id": "MKT-001",
+      "phase": "CASE_FROZEN",
+      "evidence_sha256": "c33abfec8d3ebc475af24c33395857406d8d80c4462929b9f475d9015740f79d",
+      "pre_chain_sha256": "092af1ae6523d39709264d3051c25e4f2a04563b02fcca0e55b0ab43fe189d22"
+    },
+    {
+      "case_id": "MKT-002",
+      "phase": "CASE_FROZEN",
+      "evidence_sha256": "e67380837d6348d251385bd6e8086a86765d2b35b145009f35401c79cd67fd55",
+      "pre_chain_sha256": "b9e977c17444749cb4f1490b65192cca6374617932be7f451e33190485e246e4"
+    },
+    {
+      "case_id": "MKT-003",
+      "phase": "CASE_FROZEN",
+      "evidence_sha256": "6bcc6c16812f9ebd2abece30cea8b241dd3709f3bbc32f01f50dd6b1be7f0140",
+      "pre_chain_sha256": "34d78f600e3747937da9071bada431a66320b64a48bcd8ed79d8bf14800b3255"
+    },
+    {
+      "case_id": "VIS-001",
+      "phase": "CASE_FROZEN",
+      "evidence_sha256": "6c9cf92879ae46abe2d3b16e464475ea7e2e28d7a382deda3723373ef98a4dd5",
+      "pre_chain_sha256": "8672ddd0b80f8c044b7ae39f7aa8e2da545b7ebfa49327896fec17405d2b8f05"
+    },
+    {
+      "case_id": "VIS-002",
+      "phase": "CASE_FROZEN",
+      "evidence_sha256": "acfc2a17b3194a57e1338fb3e434c2f2f8ed137daf4738b948d648b81ec7bfc1",
+      "pre_chain_sha256": "139678b177fe8299233cfbf4079a53e6407d27f00c2d1db8ec4e38f227e28b16"
+    }
+  ],
+  "draft_preparation": {
+    "status": "COMPLETE",
+    "draft_count": 5,
+    "draft_state": "INCOMPLETE_NOT_FREEZABLE",
+    "operator_binding_draft_count": 2
+  },
+  "stop_conditions": [
+    {
+      "code": "CUSTODY_CHECK_NOT_RUN_BY_LOCAL_CUSTODIAN",
+      "state": "BLOCKING_SUBMISSION",
+      "reason": "The required verify-custody command reads the private vault and cannot be performed from this external analyst preparation context."
+    },
+    {
+      "code": "REAL_OPERATOR_BINDINGS_NOT_ATTESTED",
+      "state": "BLOCKING_SUBMISSION",
+      "reason": "Operator identity, role separation, vault non-access and pre-AI timing require truthful human attestations."
+    },
+    {
+      "code": "GIT_BASELINE_MISSING",
+      "state": "BLOCKING_PERSISTENT_PROJECT_WRITE",
+      "reason": "R33 reports branch master with UNBORN_NO_COMMITS and no verifiable HEAD. No genesis commit was authorized."
+    }
+  ],
+  "terminal_state": "READY_FOR_HUMAN_INPUT_PREP_ONLY",
+  "case_state_changed": false,
+  "ai_run": false,
+  "fusion_run": false,
+  "baseline_run": false,
+  "outcome_reveal_run": false,
+  "adjudication_run": false,
+  "scoring_run": false,
+  "official_score": null,
+  "can_trade": false
+}

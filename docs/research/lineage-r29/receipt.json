@@ -1,0 +1,25 @@
+{
+  "schema_version": "visionassist.lineage.source-receipt.r29",
+  "recorded_at": "2026-07-27",
+  "artifacts": [
+    {
+      "name": "VISIONASSIST_LINEAGE_AND_PORTFOLIO_CORRECTION_R29.md",
+      "source_sha256": "521471092ee7b45e049d21f9ddc498d976eeca9fda9dc2142bbf961ca6636be7",
+      "repository_copy_sha256": "521471092ee7b45e049d21f9ddc498d976eeca9fda9dc2142bbf961ca6636be7",
+      "normalization": "NONE"
+    },
+    {
+      "name": "VISIONASSIST_LINEAGE_R29.csv",
+      "source_sha256": "e9a897c1f3b294c4d9cf1b441b51ddde2427762f39ab871dcb693a778d62e54e",
+      "repository_copy_sha256": "209844024d5ac269ff42fc6df57a15cd31b9d8c7c5275c67da870cd5ee882d2e",
+      "normalization": "CRLF_TO_LF_ONLY"
+    },
+    {
+      "name": "stage1-sensorbridge-observation.json",
+      "source_sha256": null,
+      "repository_copy_sha256": "af0cf421f0abec2a04b9d608fde744bac7b9f0a59797efb43db685747b359e51",
+      "normalization": "LOCAL_BOUNDED_OBSERVATION"
+    }
+  ],
+  "claims_boundary": "The receipt preserves supplied lineage-source identity and the observed Stage 1 inventory. It is not an independent archive attestation for Stages 2 or 3."
+}

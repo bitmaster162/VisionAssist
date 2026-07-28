@@ -1,0 +1,4 @@
+date,request_id,profile,device_id,android_version,app_build,scene_name,lighting,run_number,start_time,end_time,client_latency_ms,edge_latency_ms,http_status,summary_quality,hazard_expected,hazard_spoken,needs_human_review,error_seen,unsafe_or_confusing_notes
+YYYY-MM-DD,REQUEST-ID,android-pilot,PIXEL-01,14,debug,safe_room,good,1,10:00:00,10:00:03,3000,2800,200,correct,no,no,false,no,
+YYYY-MM-DD,REQUEST-ID,android-pilot,PIXEL-01,14,debug,door_threshold,good,1,10:02:00,10:02:04,4000,3700,200,partly_correct,yes,yes,false,no,
+YYYY-MM-DD,REQUEST-ID,android-pilot,PIXEL-01,14,debug,ambiguous_scene,dim,1,10:04:00,10:04:05,5000,4700,200,partly_correct,no,no,true,no,

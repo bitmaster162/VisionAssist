@@ -1,0 +1,33 @@
+{
+  "schema_version": "visionassist.benchmark.case-intake.v1",
+  "case_id": "MKT-001",
+  "modality": "chart_image",
+  "sampling": {
+    "candidate_id": "candidate-MKT-001",
+    "protocol_id": "market-sampling-protocol-v1",
+    "source_family": "registered-market-source",
+    "stratum": "pre-registered-regime-bucket",
+    "timeframe": "15m",
+    "selected_without_outcome_access": true
+  },
+  "captured_at": "2026-01-01T00:00:00Z",
+  "cutoff_description": "Chart ends at the final visible candle; no future bars are included.",
+  "provenance": "Internal frozen source; raw publication forbidden.",
+  "outcome_definition": {
+    "labels": [
+      "up",
+      "down",
+      "range"
+    ],
+    "horizon": "next 20 bars",
+    "resolution_rule": "Resolve using the pre-registered close and excursion thresholds.",
+    "should_abstain_rule": "True only when the evidence asset fails the pre-registered readability checks."
+  },
+  "roles": {
+    "curator_id": "curator-001",
+    "outcome_custodian_id": "custodian-001",
+    "human_analyst_id": "analyst-001",
+    "adjudicator_id": "adjudicator-001"
+  },
+  "created_at": "2026-01-01T00:00:00Z"
+}

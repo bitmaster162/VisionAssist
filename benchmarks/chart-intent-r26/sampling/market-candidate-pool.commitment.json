@@ -1,0 +1,10 @@
+{
+  "schema_version": "visionassist.benchmark.market-pool-commitment.v1",
+  "protocol_id": "market-calendar-stratified-v1",
+  "frozen_at": "2026-07-27T15:36:27.945Z",
+  "candidate_count": 60,
+  "case_ids_sha256": "96e10cc390f4775b0f617853f018385a9fd44eb27f54686ed962b2ff3131ff8c",
+  "candidate_pool_commitment_sha256": "b476622aa9880e9201fa711ce15bff83fa8976893c945ca8ad10af784c2d33a6",
+  "seed_commitment_sha256": "4801eca9e812c91eeab5ccfd8ae65e213a6bae280e67d0c83ed7d47e7e34663a",
+  "selection_code_version": "visionassist-market-selection-v1"
+}

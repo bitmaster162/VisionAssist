@@ -1,0 +1,23 @@
+{
+  "schema_version": "visionassist.benchmark.operator-binding.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "binding_id": "replace-with-unique-binding-id",
+  "frozen_role_id": "r26-human-analyst-001",
+  "role": "human_analyst",
+  "operator_pseudonym": "replace-with-controlled-pseudonym",
+  "cohort_scope": [
+    "MKT-001",
+    "MKT-002",
+    "MKT-003"
+  ],
+  "attested_at": "replace-with-ISO-8601-UTC-timestamp",
+  "attestations": {
+    "is_not_outcome_custodian": false,
+    "is_not_adjudicator": false,
+    "had_no_outcome_vault_access": false,
+    "will_record_prior_before_ai_access": false
+  },
+  "attestation_method": "replace-with-signed-or-witnessed-method",
+  "signature_ref": "replace-with-external-signature-reference",
+  "storage_boundary": "Store the completed binding outside the public repository because it may link a pseudonym to a real person."
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "visionassist.benchmark.human-prior-batch.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "batch_id": "human-prior-batch-001",
+  "status": "READY_FOR_HUMAN_INPUT",
+  "selection_rule": "First three market development slots and first two synthetic visual-control development slots, selected by slot ID without outcome inspection.",
+  "required_start_phase": "CASE_FROZEN",
+  "required_end_phase": "HUMAN_PRIOR_FROZEN",
+  "cases": [
+    {
+      "case_id": "MKT-001",
+      "domain": "market",
+      "evidence_sha256": "c33abfec8d3ebc475af24c33395857406d8d80c4462929b9f475d9015740f79d",
+      "frozen_analyst_role_id": "r26-human-analyst-001",
+      "outcome_labels": [
+        "up",
+        "down",
+        "range"
+      ]
+    },
+    {
+      "case_id": "MKT-002",
+      "domain": "market",
+      "evidence_sha256": "e67380837d6348d251385bd6e8086a86765d2b35b145009f35401c79cd67fd55",
+      "frozen_analyst_role_id": "r26-human-analyst-001",
+      "outcome_labels": [
+        "up",
+        "down",
+        "range"
+      ]
+    },
+    {
+      "case_id": "MKT-003",
+      "domain": "market",
+      "evidence_sha256": "6bcc6c16812f9ebd2abece30cea8b241dd3709f3bbc32f01f50dd6b1be7f0140",
+      "frozen_analyst_role_id": "r26-human-analyst-001",
+      "outcome_labels": [
+        "up",
+        "down",
+        "range"
+      ]
+    },
+    {
+      "case_id": "VIS-001",
+      "domain": "non_market_visual",
+      "evidence_sha256": "6c9cf92879ae46abe2d3b16e464475ea7e2e28d7a382deda3723373ef98a4dd5",
+      "frozen_analyst_role_id": "r29-visual-analyst-001",
+      "outcome_labels": [
+        "left_target",
+        "right_target",
+        "hold_position"
+      ]
+    },
+    {
+      "case_id": "VIS-002",
+      "domain": "non_market_visual",
+      "evidence_sha256": "acfc2a17b3194a57e1338fb3e434c2f2f8ed137daf4738b948d648b81ec7bfc1",
+      "frozen_analyst_role_id": "r29-visual-analyst-001",
+      "outcome_labels": [
+        "left_target",
+        "right_target",
+        "hold_position"
+      ]
+    }
+  ],
+  "blind_boundary": {
+    "analyst_may_access": [
+      "case evidence",
+      "case outcome definition",
+      "blank case-specific human-prior draft"
+    ],
+    "analyst_must_not_access": [
+      "outcome-vault",
+      "sealed outcome",
+      "AI assessment",
+      "baseline output",
+      "future frame",
+      "simulation trace",
+      "slot-to-source or slot-to-latent-policy mapping"
+    ]
+  },
+  "claims_boundary": "This batch prepares process evidence only. It contains no human judgments and supports no accuracy or uplift claim."
+}

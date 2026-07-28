@@ -1,0 +1,12 @@
+{
+  "name": "visionassist-edge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Profile-gated VisionAssist edge gateway.",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "test": "node --test",
+    "validate:intent": "node ./tools/validate-intent-record.js"
+  }
+}

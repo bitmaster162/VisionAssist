@@ -1,0 +1,318 @@
+{
+  "schema_version": "visionassist.benchmark.external-receipt-contract-r34.draft.v1",
+  "contract_id": "VA-R34-EXTERNAL-RECEIPTS",
+  "status": "DRAFT_NOT_IMPLEMENTED",
+  "program_id": "visionassist-r34-five-slot-human-prior-preparation-001",
+  "track_batch_mapping": {
+    "MARKET-R34-DEV-001": "visionassist-r34-development-001",
+    "VISUAL-CONTROL-R34": "visual-human-prior-batch-001"
+  },
+  "receipt_chain_scope": [
+    "track_id",
+    "batch_id",
+    "case_id",
+    "attempt_id"
+  ],
+  "track_ids": [
+    "MARKET-R34-DEV-001",
+    "VISUAL-CONTROL-R34"
+  ],
+  "exact_common_receipt_fields": [
+    "schema_version",
+    "receipt_id",
+    "receipt_type",
+    "batch_id",
+    "track_id",
+    "case_id",
+    "attempt_id",
+    "created_at",
+    "chain_anchor_package_manifest_sha256",
+    "previous_external_receipt_sha256",
+    "payload",
+    "authority"
+  ],
+  "receipt_types": {
+    "context_profile_freeze": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "profile_id",
+        "profile_sha256",
+        "repository_head",
+        "frozen_before_capture",
+        "role_map_sha256",
+        "source_query_registry_sha256",
+        "formula_registry_sha256",
+        "resolution_rule_sha256"
+      ]
+    },
+    "case_selection_freeze": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "selector_role_id",
+        "context_profile_sha256",
+        "selection_rule_sha256",
+        "selected_at",
+        "instrument_symbol",
+        "venue",
+        "asset_class",
+        "timeframe",
+        "capture_mode",
+        "cutoff_at",
+        "prior_deadline",
+        "horizon_start_at",
+        "applicability_matrix_sha256",
+        "selector_outcome_unseen",
+        "selector_future_data_unseen"
+      ]
+    },
+    "source_capture": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "context_profile_sha256",
+        "case_selection_freeze_receipt_sha256",
+        "instrument_symbol",
+        "venue",
+        "asset_class",
+        "timeframe",
+        "capture_mode",
+        "applicability_matrix_sha256",
+        "cutoff_at",
+        "source_groups",
+        "source_groups[].group_id",
+        "source_groups[].provider",
+        "source_groups[].object_identity_or_endpoint",
+        "source_groups[].exact_query_or_request_identity",
+        "source_groups[].units",
+        "source_groups[].data_as_of",
+        "source_groups[].retrieved_at",
+        "source_groups[].raw_artifact_format",
+        "source_groups[].raw_artifact_sha256",
+        "source_groups[].raw_readback_sha256",
+        "source_groups[].parser_code_sha256",
+        "source_groups[].parser_config_sha256"
+      ]
+    },
+    "bundle_seal": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "source_capture_receipt_sha256",
+        "case_selection_freeze_receipt_sha256",
+        "context_profile_sha256",
+        "canonical_bundle_sha256",
+        "bundle_sealed_at",
+        "canonicalization_contract_sha256",
+        "selection_bundle_identity_equality_result"
+      ]
+    },
+    "validator_execution": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "repository_head",
+        "tool_sha256",
+        "exact_command_artifact_ref",
+        "exact_command_sha256",
+        "exact_command_readback_sha256",
+        "run_id",
+        "started_at",
+        "ended_at",
+        "exit_code",
+        "stdout_sha256",
+        "stderr_sha256",
+        "case_selection_freeze_receipt_sha256",
+        "context_profile_sha256",
+        "bundle_sha256",
+        "selection_bundle_identity_equality_result",
+        "result"
+      ]
+    },
+    "independent_readback": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "verifier_role_id",
+        "verifier_binding_id",
+        "read_files",
+        "read_files[].artifact_ref",
+        "read_files[].observed_sha256",
+        "read_files[].expected_sha256",
+        "read_files[].match",
+        "all_match",
+        "role_collision_check"
+      ]
+    },
+    "case_freeze_authorization": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "authorizer",
+        "exact_authorization_text",
+        "authorization_text_sha256",
+        "case_id",
+        "bundle_sha256",
+        "validator_execution_receipt_sha256",
+        "independent_readback_receipt_sha256",
+        "authorization_scope"
+      ]
+    },
+    "custody_verification": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "custodian_role_id",
+        "custody_snapshot_sha256",
+        "case_scope",
+        "vault_not_disclosed_to_analyst",
+        "result"
+      ]
+    },
+    "operator_binding": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "frozen_role_id",
+        "operator_pseudonym",
+        "binding_id",
+        "cohort_scope",
+        "signature_ref",
+        "role_collision_check"
+      ]
+    },
+    "role_blindness_recertification": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "analyst_role_id",
+        "analyst_binding_id",
+        "selector_role_id",
+        "evidence_curator_role_id",
+        "outcome_custodian_role_id",
+        "verifier_role_id",
+        "adjudicator_role_id",
+        "all_required_roles_distinct",
+        "analyst_outcome_unseen",
+        "analyst_ai_unseen",
+        "analyst_case_specific_baseline_fusion_reveal_scoring_unseen",
+        "analyst_live_or_unmanifested_access_blocked",
+        "result"
+      ]
+    },
+    "case_freeze_readback": {
+      "applies_to": "MARKET-R34-DEV-001",
+      "exact_payload_fields": [
+        "case_manifest_sha256",
+        "bundle_sha256",
+        "initial_case_receipt_head_sha256",
+        "phase",
+        "human_prior_absent",
+        "later_stage_artifacts_absent"
+      ]
+    },
+    "analyst_input_manifest": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "analyst_input_manifest_artifact_ref",
+        "analyst_input_manifest_sha256",
+        "analyst_input_manifest_readback_sha256",
+        "allowlisted_files",
+        "allowlisted_files[].file_name",
+        "allowlisted_files[].file_sha256",
+        "allowlisted_files[].mime_type",
+        "allowlisted_files[].allowed_key_paths_or_whole_file",
+        "unknown_sidecars_present"
+      ]
+    },
+    "analyst_input_delivery": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "analyst_role_id",
+        "operator_binding_id",
+        "analyst_input_manifest_sha256",
+        "analyst_first_access_at",
+        "delivery_boundary",
+        "live_or_unmanifested_access_blocked"
+      ]
+    },
+    "trusted_prior_submit": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "human_prior_sha256",
+        "trusted_prior_submit_at",
+        "prior_deadline",
+        "horizon_start_at",
+        "submitted_before_or_at_deadline",
+        "submitted_before_horizon_start",
+        "pre_submit_receipt_head_sha256"
+      ]
+    },
+    "case_terminal": {
+      "applies_to": "BOTH_TRACKS",
+      "exact_payload_fields": [
+        "case_phase",
+        "pre_terminal_case_receipt_head_sha256",
+        "human_prior_sha256",
+        "case_specific_verify_result",
+        "later_stage_artifacts_absent",
+        "program_wide_reveal_embargo_preserved"
+      ]
+    }
+  },
+  "acceptance_rules": {
+    "canonicalization_contract_must_be_frozen_before_first_receipt": true,
+    "track_and_batch_id_must_match_track_batch_mapping": true,
+    "top_level_keys_must_equal_exact_common_receipt_fields": true,
+    "payload_keys_must_equal_receipt_type_exact_payload_fields": true,
+    "nested_list_items_must_equal_the_declared_bracket_path_fields": true,
+    "track_specific_order_applies_independently_to_each_case_attempt": true,
+    "receipt_order_may_not_be_skipped_or_backfilled_within_case_attempt": true,
+    "first_receipt_of_each_case_attempt_previous_external_receipt_sha256_must_be_null": true,
+    "first_receipt_type_of_each_case_attempt_must_equal_first_track_specific_order_item": true,
+    "every_receipt_must_bind_chain_anchor_package_manifest_sha256": true,
+    "each_non_first_receipt_must_bind_previous_external_receipt_in_same_case_attempt": true,
+    "cross_case_or_cross_attempt_previous_receipt_links_forbidden": true,
+    "all_receipts_after_genesis_must_preserve_track_batch_case_and_attempt_ids": true,
+    "case_selection_selected_at_must_not_be_after_its_receipt_created_at": true,
+    "case_selection_receipt_created_at_must_not_be_after_any_source_retrieved_at_or_bounded_search_performed_at": true,
+    "source_capture_cutoff_must_equal_case_selection_cutoff": true,
+    "source_capture_identity_and_applicability_must_equal_case_selection": true,
+    "bundle_and_prior_timing_fields_must_equal_case_selection_fields": true,
+    "bundle_case_id_instrument_symbol_venue_asset_class_timeframe_capture_mode_and_applicability_matrix_sha256_must_equal_case_selection": true,
+    "prior_evidence_binding_capture_mode_and_case_selection_receipt_sha256_must_equal_selection_and_bundle": true,
+    "authority_must_equal_receipt_authority_exact": true,
+    "failed_attempts_are_append_only": true,
+    "revised_bytes_require_new_attempt_id": true,
+    "internal_artifact_timestamp_alone_is_not_trusted": true,
+    "all_file_hashes_require_post_write_readback": true,
+    "missing_required_field_result": "HOLD"
+  },
+  "track_specific_order": {
+    "MARKET-R34-DEV-001": [
+      "context_profile_freeze",
+      "case_selection_freeze",
+      "custody_verification",
+      "source_capture",
+      "bundle_seal",
+      "validator_execution",
+      "independent_readback",
+      "case_freeze_authorization",
+      "case_freeze_readback",
+      "operator_binding",
+      "role_blindness_recertification",
+      "analyst_input_manifest",
+      "analyst_input_delivery",
+      "trusted_prior_submit",
+      "case_terminal"
+    ],
+    "VISUAL-CONTROL-R34": [
+      "custody_verification",
+      "operator_binding",
+      "role_blindness_recertification",
+      "independent_readback",
+      "analyst_input_manifest",
+      "analyst_input_delivery",
+      "trusted_prior_submit",
+      "case_terminal"
+    ]
+  },
+  "receipt_authority_exact": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

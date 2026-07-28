@@ -1,0 +1,14 @@
+{
+  "contract": "visionassist.intent.v1",
+  "source_archive": "VISIONASSIST_INTENT_CONTRACT_R26_PROOF.zip",
+  "source_archive_sha256": "9963d1172cc37932935a1d5df153c09e1d98521a6fcc935caea214780bf1f3f5",
+  "source_project": "VISIONASSIST_INTENT_CONTRACT_R26",
+  "source_final_commit": "5b6ba5f1ca9c856141b14ec2bf01f8218dea873c",
+  "source_final_tree": "7de6d67578124b4b3c8b5d78434f54e0d8ad6d99",
+  "source_bundle_sha256": "5dc0750659ac9586e93b3e086c6ef0e2e5f8f51a450a60abe9fc7371a8fdba89",
+  "source_tests": "10/10 PASS",
+  "runtime_authority": "DIAGNOSTIC_ONLY",
+  "execution_permission": "HOLD",
+  "capital_permission": "DENY",
+  "can_trade": false
+}

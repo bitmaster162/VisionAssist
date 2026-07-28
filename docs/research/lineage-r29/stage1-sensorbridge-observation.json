@@ -1,0 +1,65 @@
+{
+  "schema_version": "visionassist.lineage.stage1-observation.r29",
+  "observed_at": "2026-07-27",
+  "evidence_class": "HISTORICAL_ORIGIN",
+  "artifact": "VisionAssist-SensorBridge-MVP",
+  "origin": "Local archived scaffold under the user-provided VisionAssist staging corpus",
+  "observed_capabilities": [
+    "camera-oriented Flutter shell",
+    "voice input scaffold",
+    "SceneState",
+    "IntentSpec",
+    "SensorBridge",
+    "mock vision",
+    "GPT-S client",
+    "TTS"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "e95ee544cb30f727f749c4fe12bd68ab0129ff943c685f3798c31e542cb33485",
+      "bytes": 1895
+    },
+    {
+      "path": "pubspec.yaml",
+      "sha256": "39836b3996695bcbf12729ee5fdb1e5fbddc9a70c0dcb6e38f29611c195a3f27",
+      "bytes": 449
+    },
+    {
+      "path": "lib/main.dart",
+      "sha256": "c8be74b53c2475f8f7ec0d3021bdd0a2dc01dec54d00af625fbd8f1788a8e92f",
+      "bytes": 4932
+    },
+    {
+      "path": "lib/models.dart",
+      "sha256": "ea0d2dee13d8910ffa36b55a6a0d37c1976791a27f3d4a32a60a29c627002cbd",
+      "bytes": 2260
+    },
+    {
+      "path": "lib/sensor_bridge.dart",
+      "sha256": "14ad52d621a0395f84ba2dd4cecc5daa00bea87eb1fb9ee17d85c8ffed5e4d9c",
+      "bytes": 1057
+    },
+    {
+      "path": "lib/asr/asr_stub.dart",
+      "sha256": "22657416889d45139399f8431b7cf2966818e1c3bc2d845993405f07e791419b",
+      "bytes": 647
+    },
+    {
+      "path": "lib/gpt_s/gpt_s_client.dart",
+      "sha256": "1920a8d0f59c79cdd8a99b09343c6e77c13475ca1142ef485f7d08ffe427d568",
+      "bytes": 829
+    },
+    {
+      "path": "lib/tts/tts_service.dart",
+      "sha256": "30f2f6ffc94470c04c2a89bbe54a75ecbdb75649aa9fadbee134acaca0765314",
+      "bytes": 303
+    },
+    {
+      "path": "lib/vision/mock_vision.dart",
+      "sha256": "270208044baf736beda186dbf872db1ba21a2cc319184507e7c5eaa85e683399",
+      "bytes": 627
+    }
+  ],
+  "claims_boundary": "This inventory proves the historical scaffold was physically observed. It does not prove a successful build, device run, accessibility pilot, or current module identity."
+}

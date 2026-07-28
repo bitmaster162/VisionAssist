@@ -1,0 +1,104 @@
+{
+  "schema_version": "visionassist.scope-disposition.v1",
+  "disposition_id": "VA-B001-SCOPE-20260727T184833Z",
+  "recorded_at": "2026-07-27T18:48:33Z",
+  "batch_id": "human-prior-batch-001",
+  "decider": "Human operator",
+  "decision_evidence": {
+    "scope_objection": {
+      "exact_text": "REDACTED_PRIVATE_HUMAN_INPUT",
+      "text_sha256": "REDACTED_PRIVATE_INPUT_DIGEST"
+    },
+    "authorization": {
+      "exact_text": "REDACTED_PRIVATE_HUMAN_INPUT",
+      "text_sha256": "REDACTED_PRIVATE_INPUT_DIGEST"
+    }
+  },
+  "batch_disposition": {
+    "decision": "HOLD",
+    "terminal_state": "STOPPED_BEFORE_FIRST_SUBMISSION_SCOPE_OBJECTION",
+    "reason": "The frozen five-case batch mixes chart-only market inference with non-market visual inference. Human operator rejected chart-only market probabilities as insufficiently grounded for a meaningful market prior.",
+    "five_case_terminal_no_longer_targeted": true
+  },
+  "case_dispositions": [
+    {
+      "case_id": "MKT-001",
+      "decision": "HOLD",
+      "scope": "CURRENT_FROZEN_CASE_ONLY",
+      "reason_code": "INSUFFICIENT_DECISION_CONTEXT",
+      "reason": "Allowed evidence is insufficient for Human operator's market-decision evidence standard.",
+      "human_prior_submitted": false,
+      "protocol_abstention_used": false,
+      "case_state_changed": false
+    },
+    {
+      "case_id": "MKT-002",
+      "decision": "HOLD",
+      "scope": "CURRENT_FROZEN_CASE_ONLY",
+      "reason_code": "INSUFFICIENT_DECISION_CONTEXT",
+      "reason": "Allowed evidence is insufficient for Human operator's market-decision evidence standard.",
+      "human_prior_submitted": false,
+      "protocol_abstention_used": false,
+      "case_state_changed": false
+    },
+    {
+      "case_id": "MKT-003",
+      "decision": "HOLD",
+      "scope": "CURRENT_FROZEN_CASE_ONLY",
+      "reason_code": "INSUFFICIENT_DECISION_CONTEXT",
+      "reason": "Allowed evidence is insufficient for Human operator's market-decision evidence standard.",
+      "human_prior_submitted": false,
+      "protocol_abstention_used": false,
+      "case_state_changed": false
+    },
+    {
+      "case_id": "VIS-001",
+      "decision": "HOLD",
+      "scope": "SEPARATE_VISUAL_ONLY_TRACK",
+      "reason": "The case may remain eligible for a separate non-market visual diagnostic, but it is not continued inside the rejected mixed five-case batch.",
+      "human_prior_submitted": false,
+      "case_state_changed": false
+    },
+    {
+      "case_id": "VIS-002",
+      "decision": "HOLD",
+      "scope": "SEPARATE_VISUAL_ONLY_TRACK",
+      "reason": "The case may remain eligible for a separate non-market visual diagnostic, but it is not continued inside the rejected mixed five-case batch.",
+      "human_prior_submitted": false,
+      "case_state_changed": false
+    }
+  ],
+  "design_disposition": {
+    "market_track": {
+      "decision": "REVISE",
+      "required_revision": "Replace chart-only historical inference with a pre-cutoff market evidence bundle and a leakage-safe capture design."
+    },
+    "visual_track": {
+      "decision": "HOLD",
+      "required_revision": "Issue a separate visual-only batch manifest before any human prior is collected."
+    }
+  },
+  "unchanged_prior_draft_sha256": {
+    "MKT-001": "5223f1d2c74838cf9c1c17f0d7f474500d8e6961be803f6890ea89b741b65294",
+    "MKT-002": "b9d7dfa670e47fe32da1fef6e8dd17053bb3f9d2eb4431677142e16fbe16ec44",
+    "MKT-003": "9e11696a270b0d7f60b1ed1a1d11f54f4ae7840fd4c5723a17dfed971d216748",
+    "VIS-001": "33f0cb596b0ea2c5942b005d8ea36c4300c5bbc8950b8249835b45b88a32ce4a",
+    "VIS-002": "1fbb4a1561a49ba554f6f47b856cb3349120f0a5b3fca9acfb0c14b6197d360d"
+  },
+  "runs": {
+    "submit_human_prior": false,
+    "ai": false,
+    "fusion": false,
+    "baseline": false,
+    "reveal": false,
+    "adjudication": false,
+    "scoring": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

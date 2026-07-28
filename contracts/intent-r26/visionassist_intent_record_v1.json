@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "visionassist.intent.v1",
+  "title": "VisionAssist Visual-Semantic Intent Record",
+  "description": "Separates surface observations, latent-intent hypotheses, human priors, uncertainty, and effect permissions.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "visionassist.intent.v1"
+    },
+    "module_identity": {
+      "type": "string",
+      "const": "VISUAL_SEMANTIC_COGNITION_LAYER"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "modality": {
+          "type": "string",
+          "enum": [
+            "chart_image",
+            "scene_image",
+            "video",
+            "dashboard",
+            "document",
+            "ui"
+          ]
+        },
+        "captured_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "source_id",
+        "modality",
+        "captured_at"
+      ]
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "const": "OBSERVATION"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "description",
+          "evidence_refs"
+        ]
+      }
+    },
+    "intent_hypotheses": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "const": "HYPOTHESIS"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "counterevidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "invalidation_conditions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "description",
+          "confidence",
+          "evidence_refs",
+          "counterevidence_refs",
+          "invalidation_conditions"
+        ]
+      }
+    },
+    "human_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "present": {
+          "type": "boolean"
+        },
+        "operator_goal": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "operator_prior": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "operator_confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "notes_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "present",
+        "operator_goal",
+        "operator_prior",
+        "operator_confidence",
+        "notes_sha256"
+      ]
+    },
+    "fusion_status": {
+      "type": "string",
+      "enum": [
+        "HUMAN_AI",
+        "AI_ONLY_INCOMPLETE"
+      ]
+    },
+    "uncertainties": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "alternative_explanations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "decision_status": {
+      "type": "string",
+      "const": "DIAGNOSTIC_ONLY"
+    },
+    "action_code": {
+      "type": "string",
+      "const": "NO_ACTION"
+    },
+    "execution_permission": {
+      "type": "string",
+      "const": "HOLD"
+    },
+    "capital_permission": {
+      "type": "string",
+      "const": "DENY"
+    },
+    "can_trade": {
+      "type": "boolean",
+      "const": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "module_identity",
+    "source",
+    "observations",
+    "intent_hypotheses",
+    "human_context",
+    "fusion_status",
+    "uncertainties",
+    "alternative_explanations",
+    "decision_status",
+    "action_code",
+    "execution_permission",
+    "capital_permission",
+    "can_trade"
+  ]
+}

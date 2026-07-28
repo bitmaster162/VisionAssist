@@ -1,0 +1,47 @@
+{
+  "schema": "AGENT_HANDOFF_INTAKE_R33",
+  "generated_at_utc": "2026-07-27T16:32:04Z",
+  "lane": "CODEX-6",
+  "project": "VisionAssist",
+  "handoff_file": "VISIONASSIST_R29_P1_HANDOFF_2026-07-27.md",
+  "handoff_sha256": "5a4411151673d7afee18d239418c05ee448600a7132db69c3c7ed5d6e0721428",
+  "handoff_status": "READY_FOR_NEXT_OPERATOR",
+  "current_canon": "VISUAL_SEMANTIC_COGNITION_LAYER",
+  "runtime_profile": "intent-r26",
+  "optional_adapter": "android-pilot",
+  "primary_gate": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "reported_tests": {
+    "lineage": "5/5 PASS",
+    "benchmark_harness": "25/25 PASS",
+    "edge_runtime": "30/30 PASS",
+    "r26_source": "10/10 PASS"
+  },
+  "corpus": {
+    "market_cases_frozen": 60,
+    "synthetic_visual_cases_frozen": 15,
+    "total_cases_frozen": 75,
+    "development": 55,
+    "holdout": 20
+  },
+  "completed": [
+    "VIS-001..015 synthetic non-market controls",
+    "visual candidate-pool commitment",
+    "visual geometry QA",
+    "human-prior tooling and five-case draft smoke test"
+  ],
+  "not_started": [
+    "real human prior submissions",
+    "AI assessment",
+    "fusion revision",
+    "candlestick baseline",
+    "outcome reveal",
+    "adjudication",
+    "official scoring"
+  ],
+  "next_continuation": "BLIND_HUMAN_PRIOR_CAPTURE_FIVE_DEVELOPMENT_CASES_ONLY",
+  "visual_commitment_sha256": "a3177212076b3f65ef5fab13769d4b9f7b355c27efbc23e92d277d626496b7dc",
+  "evidence_ceiling": "HANDOFF_BOUND_REPOSITORY_GIT_IDENTITY_AND_CUSTODY_TRANSFER_NOT_YET_BOUND",
+  "terminal": false,
+  "can_trade": false,
+  "capital_permission": "DENY"
+}

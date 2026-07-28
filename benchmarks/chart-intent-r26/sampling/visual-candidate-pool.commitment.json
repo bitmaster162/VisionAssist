@@ -1,0 +1,10 @@
+{
+  "schema_version": "visionassist.benchmark.visual-pool-commitment.v1",
+  "protocol_id": "synthetic-agent-intent-control-v1",
+  "frozen_at": "2026-07-27T16:16:11.398Z",
+  "candidate_count": 15,
+  "case_ids_sha256": "330e91a82ffd68c2c6edb1ed4ca2070cccd3faf7c56150dc8e010b7f534e31af",
+  "candidate_pool_commitment_sha256": "a3177212076b3f65ef5fab13769d4b9f7b355c27efbc23e92d277d626496b7dc",
+  "seed_commitment_sha256": "1bceb1ddd6634653b11d6b93a686147cac67a7305be8bcaa3d041b32e839b34b",
+  "generator_version": "visionassist-agent-scene-v1"
+}

@@ -1,0 +1,291 @@
+{
+  "schema_version": "visionassist.benchmark.market-evidence-bundle-r34.draft.v1",
+  "template_status": "INCOMPLETE_NOT_FREEZABLE",
+  "batch_id": "visionassist-r34-development-001",
+  "track_id": "MARKET-R34-DEV-001",
+  "case_id": null,
+  "capture_mode": "FORWARD_LOCKED_BOUNDED_CONTEXT",
+  "context_profile": {
+    "profile_id": "R34_CRYPTO_PERP_CONTEXT_PROFILE",
+    "draft_source_file": "VISIONASSIST_R34_CRYPTO_PERP_CONTEXT_PROFILE_DRAFT_2026-07-28.json",
+    "normative_file_name": null,
+    "sha256": null,
+    "frozen_at": null,
+    "issued_before_capture": false
+  },
+  "instrument": {
+    "symbol": null,
+    "venue": null,
+    "asset_class": null,
+    "quote_currency": null,
+    "spot_or_derivative": null,
+    "source_group_ids": [
+      "instrument_identity_and_horizon"
+    ]
+  },
+  "timing": {
+    "case_selection_freeze_receipt_sha256": null,
+    "case_selected_at": null,
+    "case_selection_receipt_created_at": null,
+    "cutoff_at": null,
+    "bundle_sealed_at": null,
+    "analyst_access_not_before_at": null,
+    "prior_deadline": null,
+    "horizon_start_at": null,
+    "timeframe": null,
+    "timezone": "UTC",
+    "pre_capture_rule": "external_context_profile_freeze_receipt.created_at <= case_selected_at <= case_selection_receipt_created_at <= min(source_groups[].retrieved_at, events_and_articles.search_performed_at)",
+    "chronology_rule": "max(source_groups[].data_as_of, source_groups[].retrieved_at, events_and_articles.items[].first_published_at, events_and_articles.items[].updated_at, events_and_articles.scheduled_events[].known_as_of, events_and_articles.search_performed_at) <= cutoff_at <= bundle_sealed_at < delivery_receipt.analyst_first_access_at <= trusted_prior_submit_at <= prior_deadline < horizon_start_at"
+  },
+  "horizon": {
+    "completed_bars": null,
+    "labels": [
+      "up",
+      "down",
+      "range"
+    ],
+    "resolution_rule": null,
+    "source_group_ids": [
+      "instrument_identity_and_horizon"
+    ]
+  },
+  "applicability_matrix": {
+    "frozen_before_capture": false,
+    "market_cap_and_supply": null,
+    "derivatives": null,
+    "order_flow": null,
+    "event_search": true,
+    "matrix_sha256": null
+  },
+  "critical_missingness_policy": {
+    "critical_groups": [
+      "instrument_identity_and_horizon",
+      "sequential_pre_cutoff_ohlcv",
+      "cutoff_price",
+      "spot_and_perpetual_volume",
+      "spread_and_depth",
+      "turnover",
+      "market_cap_fdv_and_circulating_supply",
+      "open_interest_and_pre_cutoff_changes",
+      "funding_rate",
+      "spot_perpetual_basis",
+      "liquidations",
+      "deterministic_indicators",
+      "reference_market_and_regime",
+      "bounded_pre_cutoff_event_search",
+      "source_query_and_byte_provenance"
+    ],
+    "critical_unavailable_allowed": false,
+    "post_hoc_not_applicable_allowed": false
+  },
+  "critical_group_status": {
+    "instrument_identity_and_horizon": "UNKNOWN",
+    "sequential_pre_cutoff_ohlcv": "UNKNOWN",
+    "cutoff_price": "UNKNOWN",
+    "spot_and_perpetual_volume": "UNKNOWN",
+    "spread_and_depth": "UNKNOWN",
+    "turnover": "UNKNOWN",
+    "market_cap_fdv_and_circulating_supply": "UNKNOWN",
+    "open_interest_and_pre_cutoff_changes": "UNKNOWN",
+    "funding_rate": "UNKNOWN",
+    "spot_perpetual_basis": "UNKNOWN",
+    "liquidations": "UNKNOWN",
+    "deterministic_indicators": "UNKNOWN",
+    "reference_market_and_regime": "UNKNOWN",
+    "bounded_pre_cutoff_event_search": "UNKNOWN",
+    "source_query_and_byte_provenance": "UNKNOWN"
+  },
+  "source_group_registry": [],
+  "source_group_registry_required_fields": [
+    "group_id",
+    "provider",
+    "object_identity_or_endpoint",
+    "exact_query_or_request_identity",
+    "units",
+    "data_as_of",
+    "retrieved_at",
+    "raw_artifact_format",
+    "raw_artifact_sha256",
+    "raw_readback_sha256",
+    "parser_code_sha256",
+    "parser_config_sha256",
+    "freshness_status",
+    "missingness_status",
+    "missingness_reason"
+  ],
+  "source_group_registry_rule": "Every critical group ID must resolve to one or more registry entries or to a pre-capture not_applicable declaration allowed by the normative profile. Critical unavailable is invalid.",
+  "price_and_volume": {
+    "cutoff_price": null,
+    "ohlcv": {
+      "required_rows": null,
+      "rows": [],
+      "consecutive": false,
+      "finite": false,
+      "covers_all_frozen_lookbacks": false,
+      "units": null
+    },
+    "spot_volume": null,
+    "perpetual_volume": null,
+    "turnover": null,
+    "spread": null,
+    "depth": null,
+    "source_group_ids": [
+      "sequential_pre_cutoff_ohlcv",
+      "cutoff_price",
+      "spot_and_perpetual_volume",
+      "spread_and_depth",
+      "turnover"
+    ]
+  },
+  "token_metrics": {
+    "applicable": null,
+    "market_cap": null,
+    "fdv": null,
+    "circulating_supply": null,
+    "source_group_ids": [
+      "market_cap_fdv_and_circulating_supply"
+    ]
+  },
+  "derivatives": {
+    "applicable": null,
+    "open_interest": null,
+    "open_interest_changes": [],
+    "funding_rate": null,
+    "spot_perpetual_basis": null,
+    "liquidations": null,
+    "long_short_ratio": null,
+    "cvd_or_order_flow": null,
+    "source_group_ids": [
+      "open_interest_and_pre_cutoff_changes",
+      "funding_rate",
+      "spot_perpetual_basis",
+      "liquidations"
+    ]
+  },
+  "deterministic_indicators": {
+    "formula_manifest_sha256": null,
+    "computed_from_ohlcv_sha256": null,
+    "atr_14": null,
+    "atr_percent": null,
+    "rsi_14": null,
+    "awesome_oscillator": null,
+    "ema_20": null,
+    "ema_50": null,
+    "ema_200": null,
+    "distance_to_ema_20": null,
+    "distance_to_ema_50": null,
+    "distance_to_ema_200": null,
+    "vwap": null,
+    "frozen_return_windows": [],
+    "volume_change": null,
+    "volatility_regime": null,
+    "reproduction_status": "NOT_RUN",
+    "source_group_ids": [
+      "deterministic_indicators"
+    ]
+  },
+  "reference_market_and_regime": {
+    "reference_assets": [],
+    "regime_definition": null,
+    "regime_value": null,
+    "source_receipts": [],
+    "source_group_ids": [
+      "reference_market_and_regime"
+    ]
+  },
+  "events_and_articles": {
+    "query_policy_sha256": null,
+    "search_performed_at": null,
+    "search_cutoff_at": null,
+    "article_item_required_fields": [
+      "source_group_id",
+      "source_id",
+      "query_id",
+      "provider",
+      "object_identity_or_url",
+      "first_published_at",
+      "updated_at",
+      "captured_pre_cutoff_artifact_ref",
+      "raw_artifact_sha256",
+      "raw_readback_sha256"
+    ],
+    "article_item_template": {
+      "source_group_id": "bounded_pre_cutoff_event_search",
+      "source_id": null,
+      "query_id": null,
+      "provider": null,
+      "object_identity_or_url": null,
+      "first_published_at": null,
+      "updated_at": null,
+      "captured_pre_cutoff_artifact_ref": null,
+      "raw_artifact_sha256": null,
+      "raw_readback_sha256": null
+    },
+    "items": [],
+    "scheduled_event_required_fields": [
+      "source_group_id",
+      "source_id",
+      "provider",
+      "event_identity",
+      "scheduled_at",
+      "known_as_of",
+      "captured_pre_cutoff_artifact_ref",
+      "raw_artifact_sha256",
+      "raw_readback_sha256"
+    ],
+    "scheduled_event_template": {
+      "source_group_id": "bounded_pre_cutoff_event_search",
+      "source_id": null,
+      "provider": null,
+      "event_identity": null,
+      "scheduled_at": null,
+      "known_as_of": null,
+      "captured_pre_cutoff_artifact_ref": null,
+      "raw_artifact_sha256": null,
+      "raw_readback_sha256": null
+    },
+    "scheduled_events": [],
+    "empty_search_receipt_sha256": null,
+    "post_cutoff_items": null,
+    "materially_updated_post_cutoff_items": null,
+    "source_group_ids": [
+      "bounded_pre_cutoff_event_search"
+    ]
+  },
+  "provenance_summary": {
+    "source_group_count": 0,
+    "all_raw_artifacts_hashed": false,
+    "all_timestamps_pre_cutoff_or_equal": false,
+    "all_source_object_identities_and_queries_frozen": false,
+    "all_raw_readbacks_match": false,
+    "all_parser_code_and_config_hashes_frozen": false,
+    "all_required_groups_present_or_receipted": false
+  },
+  "leakage_scan": {
+    "future_bars_or_frames": null,
+    "sealed_outcome": null,
+    "ai_assessment": null,
+    "baseline_output": null,
+    "fusion_output": null,
+    "reveal_output": null,
+    "adjudication_output": null,
+    "scoring_output": null,
+    "outcome_derived_commentary": null,
+    "unknown_fields_or_sidecars": null,
+    "analyst_live_or_post_cutoff_access": null,
+    "status": "NOT_RUN"
+  },
+  "external_receipts_required_after_bundle_seal": {
+    "bundle_seal_receipt": true,
+    "validator_execution_receipt": true,
+    "independent_readback_receipt": true,
+    "note": "These receipts are external because a file cannot contain a trustworthy hash of its own final bytes."
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

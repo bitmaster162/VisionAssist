@@ -1,0 +1,81 @@
+{
+  "schema_version": "visionassist.intent.v1",
+  "module_identity": "VISUAL_SEMANTIC_COGNITION_LAYER",
+  "source": {
+    "source_id": "sample-chart-001",
+    "modality": "chart_image",
+    "captured_at": "2026-07-26T21:19:21Z"
+  },
+  "observations": [
+    {
+      "id": "obs-1",
+      "status": "OBSERVATION",
+      "description": "Price swept a prior range low and returned inside the range.",
+      "evidence_refs": [
+        "pixel-region:lower-range"
+      ]
+    },
+    {
+      "id": "obs-2",
+      "status": "OBSERVATION",
+      "description": "Expansion failed to continue after the sweep.",
+      "evidence_refs": [
+        "pixel-region:post-sweep"
+      ]
+    }
+  ],
+  "intent_hypotheses": [
+    {
+      "id": "hyp-1",
+      "status": "HYPOTHESIS",
+      "description": "Liquidity was collected below the range before a reclaim attempt.",
+      "confidence": 0.58,
+      "evidence_refs": [
+        "obs-1",
+        "obs-2"
+      ],
+      "counterevidence_refs": [],
+      "invalidation_conditions": [
+        "sustained acceptance below swept level"
+      ]
+    },
+    {
+      "id": "hyp-2",
+      "status": "HYPOTHESIS",
+      "description": "The move is a genuine breakdown and the return is only a weak retest.",
+      "confidence": 0.34,
+      "evidence_refs": [
+        "obs-1"
+      ],
+      "counterevidence_refs": [
+        "obs-2"
+      ],
+      "invalidation_conditions": [
+        "strong acceptance back above range midpoint"
+      ]
+    }
+  ],
+  "human_context": {
+    "present": true,
+    "operator_goal": "understand latent pressure, not receive a trade signal",
+    "operator_prior": "possible stop-run",
+    "operator_confidence": 0.45,
+    "notes_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "fusion_status": "HUMAN_AI",
+  "uncertainties": [
+    "Screenshot lacks order-flow and venue context.",
+    "Intent is latent and cannot be observed directly."
+  ],
+  "alternative_explanations": [
+    "data artifact",
+    "news-driven volatility",
+    "random microstructure noise"
+  ],
+  "decision_status": "DIAGNOSTIC_ONLY",
+  "action_code": "NO_ACTION",
+  "execution_permission": "HOLD",
+  "capital_permission": "DENY",
+  "can_trade": false
+}
+

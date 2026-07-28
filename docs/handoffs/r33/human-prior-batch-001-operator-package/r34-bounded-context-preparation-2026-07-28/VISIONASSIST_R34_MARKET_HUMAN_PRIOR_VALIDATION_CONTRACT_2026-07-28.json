@@ -1,0 +1,124 @@
+{
+  "schema_version": "visionassist.benchmark.human-prior-r34-validation-contract.draft.v1",
+  "contract_id": "VA-R34-MARKET-HUMAN-PRIOR-VALIDATION",
+  "status": "DRAFT_NOT_IMPLEMENTED",
+  "target_schema_version": "visionassist.benchmark.human-prior.r34.v1",
+  "exact_top_level_keys": [
+    "schema_version",
+    "batch_id",
+    "track_id",
+    "case_id",
+    "analyst_id",
+    "operator_binding_id",
+    "recorded_at",
+    "evidence_binding",
+    "interpretation",
+    "key_evidence_used",
+    "competing_hypotheses",
+    "outcome_forecast",
+    "confidence",
+    "attestations",
+    "authority"
+  ],
+  "identity_rules": {
+    "batch_id": "visionassist-r34-development-001",
+    "track_id": "MARKET-R34-DEV-001",
+    "case_id_pattern": "^MKT-R34-[0-9]{3}$",
+    "case_and_analyst_ids_must_match_frozen_case_manifest": true,
+    "operator_binding_id_must_match_run_specific_external_binding": true
+  },
+  "evidence_binding_rules": {
+    "exact_evidence_binding_keys": [
+      "capture_mode",
+      "case_selection_freeze_receipt_sha256",
+      "case_manifest_sha256",
+      "market_evidence_bundle_sha256",
+      "analyst_input_manifest_sha256",
+      "analyst_input_delivery_receipt_sha256",
+      "pre_submit_receipt_head_sha256",
+      "cutoff_at",
+      "prior_deadline",
+      "horizon_start_at"
+    ],
+    "all_sha256_fields_are_64_lowercase_hex": true,
+    "case_selection_freeze_receipt_sha256_must_match_bundle_and_external_chain": true,
+    "capture_mode_must_match_case_selection_receipt_and_bundle": true,
+    "case_manifest_sha256_must_match_initial_case_receipt": true,
+    "market_evidence_bundle_sha256_must_match_bundle_seal_and_validator_receipt": true,
+    "analyst_input_manifest_sha256_must_match_delivery_receipt": true,
+    "analyst_input_delivery_receipt_sha256_must_match_readback": true,
+    "pre_submit_receipt_head_sha256_must_match_current_case_head": true,
+    "timing_fields_must_match_external_receipts": true
+  },
+  "content_rules": {
+    "interpretation_non_empty": true,
+    "key_evidence_used_min_items": 1,
+    "key_evidence_used_must_resolve_to_delivered_bundle_fields_or_source_ids": true,
+    "competing_hypotheses_min_non_empty_items": 1
+  },
+  "non_abstain_rules": {
+    "when": "outcome_forecast.abstain == false",
+    "probability_labels_exactly_once": [
+      "up",
+      "down",
+      "range"
+    ],
+    "probabilities_finite": true,
+    "probability_min": 0,
+    "probability_max": 1,
+    "probability_sum": 1,
+    "probability_sum_tolerance_must_be_frozen_in_implemented_schema": true,
+    "confidence_finite": true,
+    "confidence_min": 0,
+    "confidence_max": 1,
+    "abstention_reason_code_must_be_null": true,
+    "abstention_reason_must_be_null": true
+  },
+  "abstain_rules": {
+    "when": "outcome_forecast.abstain == true",
+    "probabilities_must_be_null": true,
+    "confidence_must_be_null": true,
+    "abstention_reason_code_required": true,
+    "abstention_reason_non_empty": true,
+    "allowed_reason_codes": [
+      "INSUFFICIENT_DECISION_CONTEXT",
+      "EVIDENCE_CONTRADICTION",
+      "BLINDNESS_UNCERTAIN",
+      "OTHER_DECLARED"
+    ]
+  },
+  "pre_submit_stop_not_abstain": [
+    "MISSING_OR_STALE_CRITICAL_CONTEXT",
+    "INVALID_OR_UNREADABLE_BUNDLE",
+    "BUNDLE_OR_RECEIPT_HASH_MISMATCH",
+    "INDICATOR_REPRODUCTION_FAILURE",
+    "POST_CUTOFF_OR_UNMANIFESTED_INPUT",
+    "ROLE_COLLISION",
+    "AUTHORITY_VIOLATION"
+  ],
+  "timing_rule": {
+    "recorded_at_is_self_asserted_only": true,
+    "acceptance_uses_trusted_prior_submit_receipt": true,
+    "trusted_submit_must_not_be_after_prior_deadline": true,
+    "trusted_submit_must_be_before_horizon_start": true
+  },
+  "attestation_rules": {
+    "all_required_true_on_non_abstain": [
+      "human_authored",
+      "only_manifested_inputs_seen",
+      "outcome_unseen",
+      "case_specific_ai_unseen",
+      "post_cutoff_market_data_unseen"
+    ],
+    "blindness_uncertain_requires_abstain": true
+  },
+  "authority_rule": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false,
+    "unknown_or_extra_authority_fields_forbidden": true,
+    "trading_instruction_fields_outside_authority_forbidden": true
+  }
+}

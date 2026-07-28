@@ -1,0 +1,29 @@
+{
+  "schema_version": "visionassist.benchmark.human-prior.v1",
+  "case_id": null,
+  "analyst_id": "r29-visual-analyst-001",
+  "recorded_at": null,
+  "interpretation": "",
+  "competing_hypotheses": [],
+  "outcome_forecast": {
+    "probabilities": [
+      {
+        "label": "left_target",
+        "probability": null
+      },
+      {
+        "label": "right_target",
+        "probability": null
+      },
+      {
+        "label": "hold_position",
+        "probability": null
+      }
+    ],
+    "abstain": false,
+    "abstention_reason": null
+  },
+  "confidence": null,
+  "outcome_unseen_attestation": false,
+  "ai_unseen_attestation": false
+}

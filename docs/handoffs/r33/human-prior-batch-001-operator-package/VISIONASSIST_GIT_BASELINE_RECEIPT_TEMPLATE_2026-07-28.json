@@ -1,0 +1,57 @@
+{
+  "schema_version": "visionassist.git-baseline-receipt.v1",
+  "receipt_id": "REPLACE_AFTER_LOCAL_EXECUTION",
+  "recorded_at": "REPLACE_WITH_ISO_8601_UTC",
+  "authorization_id": "VA-GIT-GENESIS-20260727T191910Z",
+  "project_root": "<VISIONASSIST_REPO_ROOT>",
+  "branch": "master",
+  "pre_state": "UNBORN_NO_COMMITS",
+  "commit": {
+    "head_sha": null,
+    "tree_sha": null,
+    "parent_count": null,
+    "message": "chore: establish VisionAssist genesis baseline"
+  },
+  "scope": {
+    "inventory_sha256": null,
+    "staged_file_count": null,
+    "gitignore_sha256": null,
+    "cases_tree_committed": false,
+    "outcome_vault_committed": false,
+    "secret_or_credential_committed": false
+  },
+  "checks": {
+    "exact_root_verified": false,
+    "branch_verified": false,
+    "genesis_parent_count_zero": false,
+    "custody_paths_ignored": false,
+    "candidate_inventory_reviewed": false,
+    "secret_filename_scan_passed": false,
+    "secret_content_scan_passed": false,
+    "post_commit_status_clean": false
+  },
+  "custody_boundary": {
+    "cases_contents_read_for_baseline": false,
+    "outcome_vault_contents_read_for_baseline": false,
+    "verify_custody_run_by_analyst": false
+  },
+  "external_actions": {
+    "push": false,
+    "deployment": false,
+    "runtime_change": false,
+    "ai": false,
+    "fusion": false,
+    "baseline": false,
+    "reveal": false,
+    "adjudication": false,
+    "scoring": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  },
+  "terminal_status": "INCOMPLETE_TEMPLATE_NOT_EVIDENCE"
+}

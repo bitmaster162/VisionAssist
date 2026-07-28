@@ -1,0 +1,66 @@
+{
+  "schema_version": "visionassist.handoff-intake-receipt.r33.v1",
+  "project": "VisionAssist",
+  "lane": "CODEX-6",
+  "accepted_at_utc": "2026-07-27T17:27:18.428Z",
+  "source_artifacts": [
+    {
+      "name": "VISIONASSIST_R29_HANDOFF_INTAKE_R33.json",
+      "source_path": "SANITIZED_LOCAL_SOURCE/VISIONASSIST_R29_HANDOFF_INTAKE_R33.json",
+      "source_bytes": 1600,
+      "source_sha256": "1ded4de6564cecc197c8932a0e258da57fe1d2360db84d2528c740756b97f729",
+      "repository_copy": "docs/handoffs/r33/VISIONASSIST_R29_HANDOFF_INTAKE_R33.json",
+      "repository_copy_bytes": 1601,
+      "repository_copy_sha256": "8337014c09076cde8170df3c3589539381d93dab126564b2fd5f2959034ad612",
+      "copy_mode": "TEXT_PRESERVED_TRAILING_LF_NORMALIZED",
+      "byte_exact": false
+    },
+    {
+      "name": "VISIONASSIST_HANDOFF_INTAKE_R33.md",
+      "source_path": "SANITIZED_LOCAL_SOURCE/VISIONASSIST_HANDOFF_INTAKE_R33.md",
+      "source_bytes": 1532,
+      "source_sha256": "37628f0d923fb2535a6b1c6b173618fc80be623a0783f679dbba956681229acb",
+      "repository_copy": "docs/handoffs/r33/VISIONASSIST_HANDOFF_INTAKE_R33.md",
+      "repository_copy_bytes": 1532,
+      "repository_copy_sha256": "37628f0d923fb2535a6b1c6b173618fc80be623a0783f679dbba956681229acb",
+      "copy_mode": "BYTE_EXACT",
+      "byte_exact": true
+    }
+  ],
+  "handoff_binding": {
+    "repository_path": "docs/handoffs/VISIONASSIST_R29_P1_HANDOFF_2026-07-27.md",
+    "declared_bytes": 5640,
+    "observed_bytes": 5640,
+    "declared_sha256": "5a4411151673d7afee18d239418c05ee448600a7132db69c3c7ed5d6e0721428",
+    "observed_sha256": "5a4411151673d7afee18d239418c05ee448600a7132db69c3c7ed5d6e0721428",
+    "exact_match": true
+  },
+  "repository_observation": {
+    "root": "<VISIONASSIST_REPO_ROOT>",
+    "git_branch": "master",
+    "git_state": "UNBORN_NO_COMMITS",
+    "head_sha": null,
+    "tree_sha": null,
+    "porcelain_entries_at_intake": 190,
+    "observation_is_point_in_time": true
+  },
+  "intake_decision": {
+    "status": "ACCEPTED_BOUND_TO_EXACT_HANDOFF",
+    "next_continuation": "BLIND_HUMAN_PRIOR_CAPTURE_FIVE_DEVELOPMENT_CASES_ONLY",
+    "evidence_ceiling": "HANDOFF_BOUND_REPOSITORY_GIT_IDENTITY_AND_CUSTODY_TRANSFER_NOT_YET_BOUND"
+  },
+  "claims_boundary": {
+    "git_identity_bound": false,
+    "custody_transfer_bound": false,
+    "independent_custody_proven": false,
+    "human_annotations_present": false,
+    "official_score_available": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

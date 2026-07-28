@@ -1,0 +1,57 @@
+{
+  "schema_version": "visionassist.benchmark.sampling-protocol.v1",
+  "protocol_id": "synthetic-agent-intent-control-v1",
+  "status": "FROZEN",
+  "frozen_at": "2026-07-27T16:16:11.398Z",
+  "source": {
+    "family": "deterministic_synthetic_agent_scene",
+    "generator_version": "visionassist-agent-scene-v1",
+    "external_media": false,
+    "personal_data": false
+  },
+  "corpus": {
+    "case_count": 15,
+    "development_slots": "VIS-001..010",
+    "blinded_holdout_slots": "VIS-011..015",
+    "layouts": [
+      "open_field",
+      "central_barrier",
+      "split_columns",
+      "upper_gate",
+      "offset_wall"
+    ],
+    "visible_steps": 6,
+    "outcome_steps": 20
+  },
+  "selection": {
+    "method": "Pre-register all 5 layout x 3 latent-policy strata; hidden-seed permutation assigns opaque development and holdout slots before rendering.",
+    "rendered_evidence_or_future_used_for_selection": false,
+    "hidden_seed_custodian_only": true,
+    "slot_to_latent_policy_mapping_public": false,
+    "seed_commitment_sha256": "1bceb1ddd6634653b11d6b93a686147cac67a7305be8bcaa3d041b32e839b34b",
+    "candidate_pool_commitment_sha256": "a3177212076b3f65ef5fab13769d4b9f7b355c27efbc23e92d277d626496b7dc",
+    "generator_version": "visionassist-agent-scene-v1"
+  },
+  "outcome": {
+    "labels": [
+      "left_target",
+      "right_target",
+      "hold_position"
+    ],
+    "horizon": "next 20 deterministic simulation steps",
+    "resolution_rule": "Resolve to the pre-registered latent policy reached by the final simulated agent position: left target, right target, or hold position.",
+    "should_abstain_rule": "True only if the generated evidence, future frame, trace, or commitment fails validation."
+  },
+  "claims_boundary": {
+    "evidence_role": "SYNTHETIC_NON_MARKET_CONTROL",
+    "natural_scene_generality": "NOT_ESTABLISHED",
+    "production_value": "NOT_ESTABLISHED"
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

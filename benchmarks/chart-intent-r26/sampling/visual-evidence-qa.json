@@ -1,0 +1,33 @@
+{
+  "schema_version": "visionassist.benchmark.visual-evidence-qa.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "protocol_id": "synthetic-agent-intent-control-v1",
+  "candidate_pool_commitment_sha256": "a3177212076b3f65ef5fab13769d4b9f7b355c27efbc23e92d277d626496b7dc",
+  "audit_date": "2026-07-27",
+  "method": "Count generated visible-trail coordinates inside the fixed 960x540 render frame bounded by x=24..936 and y=20..520.",
+  "status": "USABLE_WITH_LIMITATION",
+  "case_count": 15,
+  "generated_visible_steps_per_case": 6,
+  "fully_visible_cases": 12,
+  "partially_clipped_cases": [
+    {
+      "case_id": "VIS-001",
+      "visible_steps_inside_frame": 5
+    },
+    {
+      "case_id": "VIS-006",
+      "visible_steps_inside_frame": 5
+    },
+    {
+      "case_id": "VIS-011",
+      "visible_steps_inside_frame": 4
+    }
+  ],
+  "minimum_visible_steps_inside_frame": 4,
+  "disposition": "Keep frozen evidence immutable and disclose the clipping limitation. Do not use this synthetic control corpus to claim natural-scene generality.",
+  "claims_boundary": {
+    "evidence_role": "SYNTHETIC_NON_MARKET_CONTROL",
+    "natural_scene_generality": "NOT_ESTABLISHED",
+    "production_value": "NOT_ESTABLISHED"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "visionassist.human-analyst-attestation-receipt.v1",
+  "receipt_id": "VA-B001-HUMAN_OPERATOR-ATTEST-20260727T183656Z",
+  "recorded_at": "2026-07-27T18:36:56Z",
+  "batch_id": "human-prior-batch-001",
+  "operator_pseudonym": "HUMAN_OPERATOR-001",
+  "source_attestation": {
+    "channel": "current_authenticated_chat",
+    "exact_text": "REDACTED_PRIVATE_HUMAN_INPUT",
+    "text_sha256": "REDACTED_PRIVATE_INPUT_DIGEST",
+    "identity_assurance": "SELF_ASSERTED_IN_ACCOUNT_CONTEXT",
+    "signature_assurance": "CHAT_RECEIPT_NOT_A_CRYPTOGRAPHIC_SIGNATURE"
+  },
+  "attestations": {
+    "is_not_outcome_custodian": true,
+    "is_not_adjudicator": true,
+    "had_no_outcome_vault_access": true,
+    "will_record_prior_before_ai_access": true
+  },
+  "role_bindings": [
+    {
+      "binding_id": "VA-B001-MARKET-HUMAN_OPERATOR-20260727T183656Z",
+      "frozen_role_id": "r26-human-analyst-001",
+      "cohort_scope": [
+        "MKT-001",
+        "MKT-002",
+        "MKT-003"
+      ]
+    },
+    {
+      "binding_id": "VA-B001-VISUAL-HUMAN_OPERATOR-20260727T183656Z",
+      "frozen_role_id": "r29-visual-analyst-001",
+      "cohort_scope": [
+        "VIS-001",
+        "VIS-002"
+      ]
+    }
+  ],
+  "audit": {
+    "status": "PASS_WITH_CONDITIONS",
+    "cleared_condition": "REAL_OPERATOR_BINDINGS_NOT_ATTESTED",
+    "basis": "The named operator directly and explicitly affirmed all four role-separation and blindness statements.",
+    "limitations": [
+      "The receipt preserves an account-context attestation, not an independent identity check or cryptographic signature.",
+      "Truthfulness cannot be established by the harness and remains a human-governance dependency."
+    ]
+  },
+  "remaining_stop_conditions": [
+    "CUSTODY_CHECK_NOT_RUN_BY_LOCAL_CUSTODIAN",
+    "GIT_BASELINE_MISSING",
+    "FIVE_HUMAN_PRIORS_NOT_RECORDED"
+  ],
+  "prohibited_runs": {
+    "ai": true,
+    "fusion": true,
+    "baseline": true,
+    "reveal": true,
+    "adjudication": true,
+    "scoring": true
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  },
+  "case_state_changed": false
+}

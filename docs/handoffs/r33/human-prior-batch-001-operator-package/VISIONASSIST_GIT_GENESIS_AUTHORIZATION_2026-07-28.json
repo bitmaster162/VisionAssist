@@ -1,0 +1,50 @@
+{
+  "schema_version": "visionassist.git-genesis-authorization.public.v1",
+  "authorization_id": "VA-GIT-GENESIS-20260727T191910Z",
+  "recorded_at": "2026-07-27T19:19:10Z",
+  "evidence_class": "SANITIZED_GOVERNANCE_FACT",
+  "governance_fact": {
+    "authorization_status": "AUTHORIZED",
+    "authorized_scope": "CREATE_ONE_REVIEWED_LOCAL_GENESIS_COMMIT",
+    "receipt_scope": "Authorization boundary only; not execution, deployment, or publication proof.",
+    "original_receipt_class": "RESTRICTED_HUMAN_PRIVATE_EVIDENCE"
+  },
+  "authorized_actions": {
+    "read_git_metadata": true,
+    "inspect_candidate_source_inventory": true,
+    "create_or_repair_project_gitignore": true,
+    "stage_reviewed_project_source_only": true,
+    "create_one_genesis_commit": true,
+    "verify_head_tree_parent_count_and_clean_status": true,
+    "write_external_baseline_receipt": true
+  },
+  "prohibited_actions": {
+    "read_outcome_vault_contents": true,
+    "read_frozen_case_contents_for_baseline": true,
+    "stage_or_commit_cases_tree": true,
+    "stage_or_commit_outcome_vault": true,
+    "stage_or_commit_secrets_credentials_private_keys_env_or_dumps": true,
+    "push_or_publish": true,
+    "deploy_or_change_runtime": true,
+    "run_ai_fusion_baseline_reveal_adjudication_or_scoring": true,
+    "grant_execution_capital_or_trading_authority": true
+  },
+  "publication_transformation": {
+    "transformation_id": "VISIONASSIST_GITHUB_HANDOFF_PREP_V1",
+    "removed": [
+      "human identity and person linkage",
+      "exact private authorization text and reversible text digest",
+      "absolute local repository path",
+      "cloud-drive identifier",
+      "private operator and environment context"
+    ],
+    "forensic_original": "RETAINED_OUTSIDE_PUBLICATION_BUNDLE"
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": "visionassist.lineage.r29",
+  "lineage_id": "VISIONASSIST_FULL_EVOLUTION_R29",
+  "effective_timeframe": "2026-07",
+  "current_stage": 4,
+  "current_identity": "CORE_PERCEPTION_CAPABILITY",
+  "current_canon": "VISUAL_SEMANTIC_COGNITION_LAYER",
+  "primary_gate": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "runtime_boundary": {
+    "core_default_profile": "intent-r26",
+    "optional_accessibility_profile": "android-pilot",
+    "integration_profile": "product-dev",
+    "research_profile": "research-r26-benchmark"
+  },
+  "portfolio": {
+    "module_role": "CORE_PERCEPTION_CAPABILITY",
+    "accessibility_role": "OPTIONAL_ACCESSIBILITY_ADAPTER",
+    "historical_accessibility_materials": "LINEAGE_EVIDENCE_NOT_CURRENT_IDENTITY_AUTHORITY",
+    "chart_semantics_role": "PRIMARY_PROOF_DOMAIN",
+    "active_inference_role": "CORE_METHOD",
+    "candlestick_classifier_role": "BASELINE_ONLY"
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "timeframe": "2025-11",
+      "name": "ASSISTIVE_VISION",
+      "identity": "Assistive eyes and voice for blind/low-vision users",
+      "evidence_class": "HISTORICAL_ORIGIN",
+      "current_role": "OPTIONAL_ACCESSIBILITY_ADAPTER",
+      "implementation_boundary": "The archived SensorBridge scaffold contains camera, voice, SceneState, IntentSpec, mock vision, GPT-S client, and TTS. This proves historical origin, not current product identity or pilot readiness."
+    },
+    {
+      "stage": 2,
+      "timeframe": "2025-12",
+      "name": "CHART_SEMANTIC_PIVOT",
+      "identity": "Market chart treated as a visual world; semantic filter applied to market structure",
+      "evidence_class": "ARCHIVE_PIVOT",
+      "current_role": "CHART_INTENT_ORIGIN",
+      "implementation_boundary": "The chart-as-visual-world framing establishes that semantic structure takes precedence over candle names. It does not establish predictive accuracy, calibration, or trading authority."
+    },
+    {
+      "stage": 3,
+      "timeframe": "2026-03",
+      "name": "ACTIVE_INFERENCE",
+      "identity": "Active Inference, object-centric generative vision and uncertainty resolution",
+      "evidence_class": "RESEARCH_ARCHITECTURE",
+      "current_role": "CORE_METHOD",
+      "implementation_boundary": "Object-centric world modelling, predictive coding, epistemic uncertainty, and active requests for a better crop, angle, zoom, or context are research architecture. They are not claimed as a completed runtime without separate implementation evidence."
+    },
+    {
+      "stage": 4,
+      "timeframe": "2026-07",
+      "name": "CURRENT_CANON",
+      "identity": "Visual-semantic cognition with human-AI fusion and competing intent hypotheses",
+      "evidence_class": "CURRENT_OPERATOR_CANON",
+      "current_role": "CORE_PERCEPTION_LAYER",
+      "implementation_boundary": "The Intent R26 contract, runtime, and benchmark harness exist. Sixty market cases are frozen; fifteen non-market cases and human-AI annotations remain missing, so calibration and uplift are not yet proven."
+    }
+  ],
+  "transitions": [
+    {
+      "from_stage": 1,
+      "to_stage": 2,
+      "meaning": "The semantic filter moved from assistive scenes to market charts as another noisy visual world."
+    },
+    {
+      "from_stage": 2,
+      "to_stage": 3,
+      "meaning": "Static semantic interpretation expanded into generative world modelling and active uncertainty reduction."
+    },
+    {
+      "from_stage": 3,
+      "to_stage": 4,
+      "meaning": "The research method was operationalized as falsifiable competing hypotheses and explicit human-AI revision."
+    }
+  ],
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  },
+  "claims_boundary": [
+    "Lineage continuity does not prove production readiness.",
+    "Historical accessibility code remains preserved but does not control current module identity.",
+    "Active Inference remains a method claim until implementation evidence exists.",
+    "Intent contract validity does not prove calibration or human-AI uplift.",
+    "No stage grants trade, execution, capital, navigation, or safety-critical authority."
+  ],
+  "source_artifacts": [
+    {
+      "name": "VISIONASSIST_LINEAGE_AND_PORTFOLIO_CORRECTION_R29.md",
+      "source_sha256": "521471092ee7b45e049d21f9ddc498d976eeca9fda9dc2142bbf961ca6636be7"
+    },
+    {
+      "name": "VISIONASSIST_LINEAGE_R29.csv",
+      "source_sha256": "e9a897c1f3b294c4d9cf1b441b51ddde2427762f39ab871dcb693a778d62e54e"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "visionassist.benchmark.visual-only-batch.v1",
+  "manifest_id": "VA-VISUAL-ONLY-BATCH-001-20260728",
+  "status": "PREFLIGHT_ONLY_SUBMISSION_BLOCKED",
+  "track": "SYNTHETIC_NON_MARKET_VISUAL_CONTROL",
+  "track_id": "VISUAL-CONTROL-R34",
+  "batch_id": "visual-human-prior-batch-001",
+  "cases": [
+    {
+      "case_id": "VIS-001",
+      "split": "development",
+      "phase": "CASE_FROZEN",
+      "frozen_analyst_role_id": "r29-visual-analyst-001",
+      "evidence_sha256": "6c9cf92879ae46abe2d3b16e464475ea7e2e28d7a382deda3723373ef98a4dd5",
+      "case_manifest_sha256": "7720b94b2ac935aa4211fc34efc3a4b87e8083aacfa7009fdee44b2c77286af6",
+      "pre_chain_sha256": "8672ddd0b80f8c044b7ae39f7aa8e2da545b7ebfa49327896fec17405d2b8f05",
+      "outcome_labels": [
+        "left_target",
+        "right_target",
+        "hold_position"
+      ]
+    },
+    {
+      "case_id": "VIS-002",
+      "split": "development",
+      "phase": "CASE_FROZEN",
+      "frozen_analyst_role_id": "r29-visual-analyst-001",
+      "evidence_sha256": "acfc2a17b3194a57e1338fb3e434c2f2f8ed137daf4738b948d648b81ec7bfc1",
+      "case_manifest_sha256": "bf910095a7ec009361864d87005f0c89cf75cda64218cde4c83c3eb273639ed9",
+      "pre_chain_sha256": "139678b177fe8299233cfbf4079a53e6407d27f00c2d1db8ec4e38f227e28b16",
+      "outcome_labels": [
+        "left_target",
+        "right_target",
+        "hold_position"
+      ]
+    }
+  ],
+  "allowed_claim": "Human prior on a deterministic synthetic non-market visual-control task.",
+  "forbidden_claims": [
+    "market decision quality",
+    "trading edge",
+    "natural-scene generality",
+    "production readiness",
+    "accuracy or uplift before scoring phase"
+  ],
+  "track_isolation": {
+    "allowed_outcome_labels": [
+      "left_target",
+      "right_target",
+      "hold_position"
+    ],
+    "market_fields_forbidden": [
+      "symbol",
+      "timeframe",
+      "ohlcv",
+      "market_cap",
+      "open_interest",
+      "funding",
+      "up",
+      "down",
+      "range"
+    ],
+    "join_with_market_manifest_or_metric": false
+  },
+  "submission_gate": {
+    "git_baseline_verified": false,
+    "custody_verified_by_separate_local_custodian": false,
+    "run_specific_blindness_and_role_separation_reconfirmed": false,
+    "exact_case_and_receipt_hashes_reverified": false,
+    "future_artifacts_absent": false
+  },
+  "prohibited_runs": {
+    "ai": true,
+    "fusion": true,
+    "baseline": true,
+    "reveal": true,
+    "adjudication": true,
+    "scoring": true
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "visionassist.benchmark.visual-case-freeze-receipt.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "case_id": "VIS-009",
+  "split": "development",
+  "phase_at_publication": "CASE_FROZEN",
+  "protocol_id": "synthetic-agent-intent-control-v1",
+  "candidate_pool_commitment_sha256": "a3177212076b3f65ef5fab13769d4b9f7b355c27efbc23e92d277d626496b7dc",
+  "case_manifest_sha256": "bf95456d86be895269a2847328e65192d91503a26c596ccf1f141efb373b0be7",
+  "evidence_sha256": "90c72e621802093e37369c452d256c7d3488adefbaea89d9eab5694de9e31006",
+  "outcome_commitment_sha256": "34ecfc43a325ce8b632f7d8cac25cf7ea9fcb02448f57f068159904a3839736f",
+  "initial_chain_sha256": "721a7a8bf856dba1db499210aa92299941256be2293fb358a2b409b418d1a516",
+  "case_frozen_at": "2026-07-27T16:16:28.395Z",
+  "evidence_role": "SYNTHETIC_NON_MARKET_CONTROL",
+  "latent_policy_exposed": false,
+  "outcome_exposed": false,
+  "natural_scene_generality_claimed": false,
+  "claims_boundary": "This receipt proves local synthetic-control artifact consistency only. It is not natural-scene, production, operator-identity, or independent-custody proof.",
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

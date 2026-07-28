@@ -1,0 +1,14 @@
+{
+  "schema_version": "visionassist.benchmark.sampling-protocol.v1",
+  "protocol_id": "market-sampling-protocol-v1",
+  "status": "EXAMPLE_NOT_REGISTERED",
+  "frozen_at": null,
+  "owner_id": "curator-001",
+  "candidate_pool_commitment_sha256": null,
+  "selection_method": "Define the deterministic or randomized selection rule before outcome access.",
+  "stratification_rule": "Define market regimes, timeframes, source families, and non-market scenario classes before selection.",
+  "exclusion_rule": "Define readability, duplication, corruption, and licensing exclusions only.",
+  "holdout_assignment_rule": "MKT-046..060 and VIS-011..015 are blinded holdout slots.",
+  "outcome_blind_attestation": false,
+  "external_witness_id": null
+}

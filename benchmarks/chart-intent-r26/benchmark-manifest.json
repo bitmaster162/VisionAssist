@@ -1,0 +1,79 @@
+{
+  "schema_version": "visionassist.benchmark.manifest.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "lineage_contract": "visionassist.lineage.r29",
+  "priority": "P1",
+  "status": "CORPUS_FROZEN_75_OF_75_ANNOTATION_PENDING",
+  "contract_version": "visionassist.intent.v1",
+  "corpus": {
+    "market_cases": 60,
+    "non_market_visual_cases": 15,
+    "total_cases": 75,
+    "development_cases": 55,
+    "blinded_holdout_cases": 20
+  },
+  "current_progress": {
+    "case_frozen": 75,
+    "missing": 0,
+    "market_frozen": 60,
+    "non_market_visual_frozen": 15,
+    "next_required_stage": "HUMAN_PRIOR_FROZEN",
+    "candidate_pool_commitments": {
+      "market_sha256": "b476622aa9880e9201fa711ce15bff83fa8976893c945ca8ad10af784c2d33a6",
+      "synthetic_visual_sha256": "a3177212076b3f65ef5fab13769d4b9f7b355c27efbc23e92d277d626496b7dc"
+    },
+    "visual_evidence_qa": {
+      "status": "USABLE_WITH_LIMITATION",
+      "fully_visible_cases": 12,
+      "partially_clipped_cases": 3,
+      "natural_scene_generality": "NOT_ESTABLISHED"
+    },
+    "r33_intake": {
+      "status": "ACCEPTED_BOUND_TO_EXACT_HANDOFF",
+      "handoff_sha256": "5a4411151673d7afee18d239418c05ee448600a7132db69c3c7ed5d6e0721428"
+    },
+    "local_custody_snapshot": {
+      "status": "VERIFIED_LOCAL_BYTES_ONLY",
+      "combined_sha256": "966b4b5fea0b2ec1ef8fc2677b4cffc0479d58aa9f967fb8485c3549f8241cfe",
+      "custody_transfer_bound": false,
+      "independent_custody_proven": false,
+      "git_identity_bound": false
+    }
+  },
+  "stage_order": [
+    "CASE_FROZEN",
+    "HUMAN_PRIOR_FROZEN",
+    "AI_ASSESSMENT_FROZEN",
+    "FUSION_REVISION_FROZEN",
+    "BASELINE_FROZEN",
+    "OUTCOME_REVEALED",
+    "ADJUDICATION_FROZEN",
+    "POST_OUTCOME_REVIEW_FROZEN"
+  ],
+  "required_metrics": [
+    "evidence_grounding",
+    "brier_calibration",
+    "alternative_hypothesis_coverage",
+    "counterevidence_quality",
+    "invalidation_quality",
+    "abstention_quality",
+    "human_only_accuracy",
+    "ai_only_accuracy",
+    "human_ai_accuracy",
+    "hindsight_leakage",
+    "correction_after_outcome_reveal"
+  ],
+  "baseline": {
+    "name": "candlestick_classifier",
+    "role": "COMPARATOR_ONLY",
+    "may_influence_ai_assessment": false,
+    "may_issue_actions": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

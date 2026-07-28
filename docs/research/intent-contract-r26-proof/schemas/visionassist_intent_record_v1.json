@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "visionassist.intent.v1",
+  "title": "VisionAssist Visual-Semantic Intent Record",
+  "description": "Separates surface observations, latent-intent hypotheses, human priors, uncertainty and effect permissions.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "module_identity",
+    "source",
+    "observations",
+    "intent_hypotheses",
+    "human_context",
+    "fusion_status",
+    "uncertainties",
+    "alternative_explanations",
+    "decision_status",
+    "execution_permission",
+    "capital_permission",
+    "can_trade"
+  ]
+}
+

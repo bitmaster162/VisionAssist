@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="VisionAssist Intent R26 diagnostic console">
+    <title>VisionAssist / Intent R26</title>
+    <link rel="stylesheet" href="/intent-r26/styles.css">
+    <script src="/intent-r26/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">К рабочей области</a>
+
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">VisionAssist · Visual-Semantic Cognition</p>
+        <h1>Intent R26</h1>
+      </div>
+      <div class="runtime-state">
+        <span class="authority-badge">DIAGNOSTIC ONLY</span>
+        <span id="runtime-status" class="runtime-copy">Проверяю runtime...</span>
+      </div>
+    </header>
+
+    <main id="workspace" class="workspace">
+      <section class="control-panel" aria-labelledby="input-title">
+        <div class="section-heading">
+          <span class="section-number">01</span>
+          <div>
+            <p class="kicker">Evidence in</p>
+            <h2 id="input-title">Изображение и prior</h2>
+          </div>
+        </div>
+
+        <form id="intent-form">
+          <label class="upload-zone" for="image-input">
+            <input
+              id="image-input"
+              name="image"
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              required
+            >
+            <span class="upload-mark" aria-hidden="true">+</span>
+            <span>
+              <strong>Выбрать график или визуальный источник</strong>
+              <small id="file-label">JPEG, PNG или WebP · до 10 МБ</small>
+            </span>
+          </label>
+
+          <div class="field-grid">
+            <label>
+              <span>Source ID</span>
+              <input id="source-id" name="source_id" required>
+            </label>
+
+            <label>
+              <span>Модальность</span>
+              <select id="modality" name="modality">
+                <option value="chart_image">График</option>
+                <option value="dashboard">Дашборд</option>
+                <option value="document">Документ</option>
+                <option value="ui">Интерфейс</option>
+                <option value="scene_image">Сцена</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Язык вывода</span>
+              <select id="locale" name="locale">
+                <option value="ru-RU">Русский</option>
+                <option value="en-US">English</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="toggle-row">
+            <input id="human-present" type="checkbox" checked>
+            <span class="toggle" aria-hidden="true"></span>
+            <span>
+              <strong>Добавить человеческий контекст</strong>
+              <small>Prior остаётся prior, а не фактом.</small>
+            </span>
+          </label>
+
+          <fieldset id="human-fields">
+            <legend>Human context</legend>
+
+            <label>
+              <span>Цель оператора</span>
+              <input
+                id="operator-goal"
+                value="понять скрытое давление без торгового сигнала"
+                required
+              >
+            </label>
+
+            <label>
+              <span>Предварительная гипотеза</span>
+              <textarea
+                id="operator-prior"
+                rows="3"
+                required
+                placeholder="Например: возможный сбор ликвидности"
+              ></textarea>
+            </label>
+
+            <label>
+              <span>Уверенность prior: <output id="confidence-output">0.45</output></span>
+              <input
+                id="operator-confidence"
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value="0.45"
+              >
+            </label>
+          </fieldset>
+
+          <div class="action-row">
+            <button id="analyze-button" class="primary-action" type="submit">
+              Разобрать изображение
+            </button>
+            <button id="validate-sample" class="secondary-action" type="button">
+              Проверить эталон
+            </button>
+          </div>
+
+          <p class="boundary-note">
+            Система строит конкурирующие гипотезы. Она не выдаёт BUY/SELL,
+            не исполняет сделки и не получает доступ к капиталу.
+          </p>
+        </form>
+      </section>
+
+      <section class="result-panel" aria-labelledby="result-title" aria-live="polite">
+        <div class="section-heading">
+          <span class="section-number">02</span>
+          <div>
+            <p class="kicker">Contract out</p>
+            <h2 id="result-title">Диагностическая запись</h2>
+          </div>
+        </div>
+
+        <div id="result-content" class="empty-state">
+          <span class="empty-glyph" aria-hidden="true">R26</span>
+          <p>Здесь появятся наблюдения, гипотезы, контрдоказательства и условия опровержения.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Schema: visionassist.intent.v1</span>
+      <span>NO_ACTION · HOLD · DENY</span>
+    </footer>
+  </body>
+</html>

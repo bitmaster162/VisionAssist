@@ -1,0 +1,24 @@
+{
+  "schema_version": "visionassist.benchmark.market-case-freeze-receipt.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "case_id": "MKT-026",
+  "split": "development",
+  "phase_at_publication": "CASE_FROZEN",
+  "protocol_id": "market-calendar-stratified-v1",
+  "candidate_pool_commitment_sha256": "b476622aa9880e9201fa711ce15bff83fa8976893c945ca8ad10af784c2d33a6",
+  "case_manifest_sha256": "8c0e108407a716d77fd6ee5ae809621b706050a7d8af85315a902035dcd80b11",
+  "evidence_sha256": "1b0111017c12e7160bcbd90d1beb24e1da1684104a616d9406f8940820676c1c",
+  "outcome_commitment_sha256": "854959e1e030130555401e9d0b5213adeb12f41de6fea03e878f3fb0732c5de1",
+  "initial_chain_sha256": "4412e0d7a44a2261bbc837d81503b98675e5db442e1687ab38e1546834e4fbcb",
+  "case_frozen_at": "2026-07-27T15:39:41.123Z",
+  "source_identity_exposed": false,
+  "outcome_exposed": false,
+  "claims_boundary": "This receipt proves local hash consistency only. It is not an independent timestamp, operator identity proof, or benchmark result.",
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

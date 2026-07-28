@@ -1,0 +1,34 @@
+{
+  "schema_version": "visionassist.git-genesis-operator-package-manifest.v1",
+  "manifest_id": "VA-GIT-GENESIS-PACKAGE-20260727T191910Z",
+  "recorded_at": "2026-07-27T19:19:10Z",
+  "authorization_id": "VA-GIT-GENESIS-20260727T191910Z",
+  "files": [
+    {
+      "name": "VISIONASSIST_GIT_GENESIS_AUTHORIZATION_2026-07-28.json",
+      "sha256": "d798d0dd90b57a4b7ff72eff3c39158d9e8cd286aefaff2b7ed0f6b7a47c64ac"
+    },
+    {
+      "name": "VISIONASSIST_GIT_GENESIS_LOCAL_WORK_ORDER_2026-07-28.md",
+      "sha256": "2be6d217f9046e7d726dcd0c575aee20ffabfa99311698d43ed65e02d71a7513"
+    },
+    {
+      "name": "VISIONASSIST_GIT_BASELINE_RECEIPT_TEMPLATE_2026-07-28.json",
+      "sha256": "489788ebcd20f14bc339c351c687fbd06a3c906a3f1c3592817b8649429642a3"
+    }
+  ],
+  "execution": {
+    "local_project_root_available": false,
+    "genesis_commit_created": false,
+    "head_sha": null,
+    "tree_sha": null,
+    "terminal_status": "READY_FOR_LOCAL_EXECUTION_NOT_YET_EVIDENCE"
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

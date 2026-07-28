@@ -1,0 +1,79 @@
+{
+  "schema_version": "visionassist.operator-package-manifest.v1",
+  "manifest_id": "VA-B001-OPERATOR-PACKAGE-20260727T183656Z",
+  "recorded_at": "2026-07-27T18:36:56Z",
+  "batch_id": "human-prior-batch-001",
+  "package_status": "READY_FOR_MANUAL_HUMAN_PRIOR_ENTRY_WITH_BLOCKERS",
+  "files": [
+    {
+      "name": "VISIONASSIST_BLIND_HUMAN_PRIOR_BATCH_001_OPERATOR_PACKET_2026-07-27.md",
+      "sha256": "b8b0f9be05fdb7e7c905486cdb20ecf407bc16c511a4dd23425c3055dfee4ed8"
+    },
+    {
+      "name": "HUMAN_INPUT_GUIDE_2026-07-28.md",
+      "sha256": "249e227fea8f8903f1a3972e4293dffcff56b0b30a86fe3c6f298755877a0856"
+    },
+    {
+      "name": "STATUS_AFTER_ANALYST_ATTESTATION_2026-07-28.md",
+      "sha256": "7e885446132278b34a1dfb24361ea2fbf6b42ee7fe74d5dc3b7fdb0e92b315d3"
+    },
+    {
+      "name": "PREFLIGHT_RECEIPT_2026-07-28.json",
+      "sha256": "a9bd982ad6784f1ee4f1d483b49ddebe1e4416a2e6733aa0dc95b0612388331c"
+    },
+    {
+      "name": "HUMAN_OPERATOR_ANALYST_ATTESTATION_RECEIPT_2026-07-28.json",
+      "sha256": "e2af86c02752c0193477486f611debd72cb9a0ffde9a58afc9d1cc131602e195"
+    },
+    {
+      "name": "MARKET.operator-binding.attested.json",
+      "sha256": "a67caca364d1b3736e75e62ec6e35ea231542ca79aa2a06b1b4499e21ddcfc06"
+    },
+    {
+      "name": "VISUAL.operator-binding.attested.json",
+      "sha256": "6247475c6335ffdca17983cad2dceb712645d6e242028b68ed5b79a1beb2ddd0"
+    },
+    {
+      "name": "MKT-001.human-prior.json",
+      "sha256": "5223f1d2c74838cf9c1c17f0d7f474500d8e6961be803f6890ea89b741b65294"
+    },
+    {
+      "name": "MKT-002.human-prior.json",
+      "sha256": "b9d7dfa670e47fe32da1fef6e8dd17053bb3f9d2eb4431677142e16fbe16ec44"
+    },
+    {
+      "name": "MKT-003.human-prior.json",
+      "sha256": "9e11696a270b0d7f60b1ed1a1d11f54f4ae7840fd4c5723a17dfed971d216748"
+    },
+    {
+      "name": "VIS-001.human-prior.json",
+      "sha256": "33f0cb596b0ea2c5942b005d8ea36c4300c5bbc8950b8249835b45b88a32ce4a"
+    },
+    {
+      "name": "VIS-002.human-prior.json",
+      "sha256": "1fbb4a1561a49ba554f6f47b856cb3349120f0a5b3fca9acfb0c14b6197d360d"
+    }
+  ],
+  "cleared_condition": "REAL_OPERATOR_BINDINGS_NOT_ATTESTED",
+  "remaining_stop_conditions": [
+    "CUSTODY_CHECK_NOT_RUN_BY_LOCAL_CUSTODIAN",
+    "GIT_BASELINE_MISSING",
+    "FIVE_HUMAN_PRIORS_NOT_RECORDED"
+  ],
+  "runs": {
+    "ai": false,
+    "fusion": false,
+    "baseline": false,
+    "reveal": false,
+    "adjudication": false,
+    "scoring": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  },
+  "case_state_changed": false
+}

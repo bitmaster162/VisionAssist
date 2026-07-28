@@ -1,0 +1,58 @@
+{
+  "schema_version": "visionassist.benchmark.human-prior.r34.v1",
+  "batch_id": "visionassist-r34-development-001",
+  "track_id": "MARKET-R34-DEV-001",
+  "case_id": null,
+  "analyst_id": null,
+  "operator_binding_id": null,
+  "recorded_at": null,
+  "evidence_binding": {
+    "capture_mode": "FORWARD_LOCKED_BOUNDED_CONTEXT",
+    "case_selection_freeze_receipt_sha256": null,
+    "case_manifest_sha256": null,
+    "market_evidence_bundle_sha256": null,
+    "analyst_input_manifest_sha256": null,
+    "analyst_input_delivery_receipt_sha256": null,
+    "pre_submit_receipt_head_sha256": null,
+    "cutoff_at": null,
+    "prior_deadline": null,
+    "horizon_start_at": null
+  },
+  "interpretation": "",
+  "key_evidence_used": [],
+  "competing_hypotheses": [],
+  "outcome_forecast": {
+    "probabilities": [
+      {
+        "label": "up",
+        "probability": null
+      },
+      {
+        "label": "down",
+        "probability": null
+      },
+      {
+        "label": "range",
+        "probability": null
+      }
+    ],
+    "abstain": false,
+    "abstention_reason_code": null,
+    "abstention_reason": null
+  },
+  "confidence": null,
+  "attestations": {
+    "human_authored": false,
+    "only_manifested_inputs_seen": false,
+    "outcome_unseen": false,
+    "case_specific_ai_unseen": false,
+    "post_cutoff_market_data_unseen": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

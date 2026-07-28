@@ -1,0 +1,77 @@
+{
+  "schema_version": "visionassist.git-genesis-runner-package-manifest.v2",
+  "manifest_id": "VA-GIT-GENESIS-RUNNER-PACKAGE-20260727T220127Z",
+  "recorded_at": "2026-07-27T22:01:27Z",
+  "authorization_id": "VA-GIT-GENESIS-20260727T191910Z",
+  "target": {
+    "project_root": "<VISIONASSIST_REPO_ROOT>",
+    "expected_branch": "master",
+    "expected_pre_state": "UNBORN_HEAD_NO_REFS"
+  },
+  "supersedes": [
+    {
+      "name": "VISIONASSIST_GIT_GENESIS_LOCAL_WORK_ORDER_2026-07-28.md",
+      "reason": "Older inline git add/git commit procedure lacks frozen runner gates, raw-blob binding, exact-manifest tree reconstruction and separate readback."
+    },
+    {
+      "name": "VISIONASSIST_GIT_GENESIS_OPERATOR_PACKAGE_MANIFEST_2026-07-28.json",
+      "reason": "Older manifest does not describe the reviewed three-phase runner package."
+    }
+  ],
+  "files": [
+    {
+      "name": "Invoke-VisionAssistGitGenesis.ps1",
+      "sha256": "431ec053b5544e125446e179dddc8c035f610f1e04ffb39eecb385b4c1731651",
+      "role": "prepare_stage_commit_runner"
+    },
+    {
+      "name": "Test-VisionAssistGitGenesisReadback.ps1",
+      "sha256": "9411febc640774f10fcf5fbc26b76d321546ed0406e2749ba787ecffd5623436",
+      "role": "separate_read_only_verifier"
+    },
+    {
+      "name": "VISIONASSIST_GIT_GENESIS_RUNNER_INSTRUCTIONS_2026-07-28.md",
+      "sha256": "eb8d94cbe13d73cc8dfab2d6151b8304a94952e56ec3e241867d5c9e003a2efd",
+      "role": "operator_instructions_and_stop_conditions"
+    },
+    {
+      "name": "VISIONASSIST_GIT_GENESIS_RUNNER_SECURITY_REVIEW_2026-07-28.md",
+      "sha256": "c38e77605de3f48ff386a3e18b427b681e0df256d2b28dd955bb1640e20fceb1",
+      "role": "static_review_record"
+    }
+  ],
+  "validation": {
+    "tree_sitter_powershell_parse_error_count": 0,
+    "git_external_index_plumbing_fixture_passed": true,
+    "independent_static_review_verdict": "ACCEPT",
+    "windows_powershell_5_1_parser_gate_required": true,
+    "windows_powershell_5_1_parser_gate_completed": false,
+    "target_runner_executed": false,
+    "target_readback_executed": false
+  },
+  "prohibited_actions_not_run": {
+    "ai": true,
+    "fusion": true,
+    "market_baseline": true,
+    "reveal": true,
+    "adjudication": true,
+    "scoring": true,
+    "push": true,
+    "deployment": true,
+    "trading": true
+  },
+  "execution": {
+    "local_project_root_available": false,
+    "genesis_commit_created": false,
+    "head_sha": null,
+    "tree_sha": null,
+    "terminal_status": "REVIEWED_RUNNER_PACKAGE_NOT_EXECUTED"
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "domain_action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "visionassist.benchmark.local-custody-snapshot.r33.v1",
+  "benchmark_id": "VISIONASSIST_CHART_INTENT_AND_HUMAN_AI_FUSION_PROOF",
+  "generated_at_utc": "2026-07-27T17:32:26.999Z",
+  "evidence_class": "LOCAL_CUSTODY_SNAPSHOT_ONLY",
+  "handoff_intake_receipt_canonical_sha256": "0294a2f21def36caa8febf5b12d6c940803565df702a8b765af8c5aaf2f9974e",
+  "scope": {
+    "case_directories": 75,
+    "cases_file_count": 225,
+    "cases_total_bytes": 874343,
+    "outcome_vault_file_count": 319,
+    "outcome_vault_total_bytes": 2605437
+  },
+  "commitments": {
+    "cases_tree_sha256": "f5fbbc51b524feb83f2183d29047e3d9552a660a184975f038abcc021fa4815d",
+    "outcome_vault_tree_sha256": "6a2cfc48b96abe7aa1f065b1ae9299395e15708257e0c86b83646fbd5642ade0",
+    "combined_sha256": "966b4b5fea0b2ec1ef8fc2677b4cffc0479d58aa9f967fb8485c3549f8241cfe"
+  },
+  "disclosure": {
+    "file_paths_published": false,
+    "individual_file_hashes_published": false,
+    "file_contents_published": false,
+    "outcome_labels_published": false,
+    "hidden_seed_published": false
+  },
+  "claims_boundary": {
+    "local_bytes_bound": true,
+    "custody_transfer_bound": false,
+    "independent_custody_proven": false,
+    "trusted_timestamp_proven": false,
+    "git_identity_bound": false
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}
