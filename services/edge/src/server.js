@@ -4,6 +4,11 @@ import { readFileSync } from "node:fs";
 import { config } from "./config.js";
 import { validateIntentRecord } from "./intent-contract.js";
 import {
+  adaptIntentToMarketObservation,
+  sha256Base64Image,
+  validateMarketObservation
+} from "./market-observation-contract.js";
+import {
   createIntentRecord,
   createOcrText,
   createRealtimeClientSecret,
@@ -124,6 +129,15 @@ function validateIntentRecordPayload(payload) {
     const error = new Error("Field `record` must contain an intent record object.");
     error.statusCode = 400;
     error.code = "invalid_intent_input";
+    throw error;
+  }
+}
+
+function validateMarketObservationPayload(payload) {
+  if (!payload?.record || typeof payload.record !== "object" || Array.isArray(payload.record)) {
+    const error = new Error("Field `record` must contain a market observation object.");
+    error.statusCode = 400;
+    error.code = "invalid_market_input";
     throw error;
   }
 }
@@ -308,6 +322,90 @@ const server = createServer(async (request, response) => {
           status_code: error.statusCode ?? 500,
           fusion_status: null,
           hypothesis_count: 0,
+          error: error.code ?? error.message ?? "internal_error"
+        });
+        throw error;
+      }
+    }
+
+    if (request.method === "POST" && request.url === "/v1/market/validate") {
+      if (!config.capabilities.intent) {
+        return capabilityDisabled(response, requestId, "intent");
+      }
+
+      const startedAt = performance.now();
+      try {
+        const payload = await readJsonBody(request);
+        validateMarketObservationPayload(payload);
+        const validation = validateMarketObservation(payload.record);
+
+        logIntentEvent("market_observation_validate", {
+          request_id: requestId,
+          latency_ms: Math.round(performance.now() - startedAt),
+          status_code: 200,
+          quality_status: validation.quality_status,
+          observation_count: validation.observation_count,
+          hypothesis_count: validation.hypothesis_count,
+          error: null
+        });
+        return sendJson(response, 200, validation, requestId);
+      } catch (error) {
+        logIntentEvent("market_observation_validate", {
+          request_id: requestId,
+          latency_ms: Math.round(performance.now() - startedAt),
+          status_code: error.statusCode ?? 500,
+          quality_status: null,
+          observation_count: 0,
+          hypothesis_count: 0,
+          error: error.code ?? error.message ?? "internal_error"
+        });
+        throw error;
+      }
+    }
+
+    if (request.method === "POST" && request.url === "/v1/market/observe") {
+      if (!config.capabilities.intent) {
+        return capabilityDisabled(response, requestId, "intent");
+      }
+
+      const startedAt = performance.now();
+      try {
+        const payload = await readJsonBody(request);
+        validateImage(payload);
+        const result = await createIntentRecord({
+          imageBase64: payload.image,
+          imageMimeType: payload.image_mime_type,
+          source: payload.source,
+          humanContext: payload.human_context,
+          locale: payload.locale ?? "en-US"
+        });
+        const record = adaptIntentToMarketObservation(result.record, {
+          requestId,
+          imageSha256: sha256Base64Image(payload.image),
+          marketContext: payload.market_context
+        });
+        const validation = validateMarketObservation(record);
+
+        logIntentEvent("market_observation_observe", {
+          request_id: requestId,
+          latency_ms: Math.round(performance.now() - startedAt),
+          status_code: 200,
+          quality_status: validation.quality_status,
+          observation_count: validation.observation_count,
+          hypothesis_count: validation.hypothesis_count,
+          raw_image_persisted: false,
+          error: null
+        });
+        return sendJson(response, 200, { record, validation }, requestId);
+      } catch (error) {
+        logIntentEvent("market_observation_observe", {
+          request_id: requestId,
+          latency_ms: Math.round(performance.now() - startedAt),
+          status_code: error.statusCode ?? 500,
+          quality_status: null,
+          observation_count: 0,
+          hypothesis_count: 0,
+          raw_image_persisted: false,
           error: error.code ?? error.message ?? "internal_error"
         });
         throw error;
