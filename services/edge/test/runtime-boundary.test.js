@@ -39,6 +39,9 @@ test("all one-shot OpenAI requests disable Responses application-state storage",
     "utf8"
   );
 
-  assert.equal((openAiSource.match(/store: false/g) ?? []).length, 3);
+  const responseCallCount = (openAiSource.match(/postToOpenAi\("\/responses"/g) ?? []).length;
+  const noStoreCount = (openAiSource.match(/store: false/g) ?? []).length;
+  assert.equal(responseCallCount, 4);
+  assert.equal(noStoreCount, responseCallCount);
   assert.equal(openAiSource.includes("privacy.faces"), false);
 });

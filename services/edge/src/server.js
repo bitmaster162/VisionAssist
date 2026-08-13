@@ -10,6 +10,7 @@ import {
 } from "./market-observation-contract.js";
 import {
   createIntentRecord,
+  createMarketDetectorReport,
   createOcrText,
   createRealtimeClientSecret,
   createSceneDescription
@@ -357,6 +358,58 @@ const server = createServer(async (request, response) => {
           quality_status: null,
           observation_count: 0,
           hypothesis_count: 0,
+          error: error.code ?? error.message ?? "internal_error"
+        });
+        throw error;
+      }
+    }
+
+    if (request.method === "POST" && request.url === "/v1/market/detect") {
+      if (!config.capabilities.intent) {
+        return capabilityDisabled(response, requestId, "intent");
+      }
+
+      const startedAt = performance.now();
+      try {
+        const payload = await readJsonBody(request);
+        validateImage(payload);
+        validateMarketObservationPayload(payload);
+        const marketValidation = validateMarketObservation(payload.record);
+        const imageSha256 = sha256Base64Image(payload.image);
+        if (imageSha256 !== payload.record.source.image_sha256) {
+          const error = new Error("image does not match market observation source binding");
+          error.statusCode = 422;
+          error.code = "detector_source_binding_mismatch";
+          throw error;
+        }
+
+        const result = await createMarketDetectorReport({
+          imageBase64: payload.image,
+          imageMimeType: payload.image_mime_type,
+          marketObservation: payload.record,
+          locale: payload.locale ?? "en-US"
+        });
+
+        logIntentEvent("market_structure_detect", {
+          request_id: requestId,
+          source_market_request_id: payload.record.request_id,
+          latency_ms: Math.round(performance.now() - startedAt),
+          status_code: 200,
+          market_quality_status: marketValidation.quality_status,
+          detector_quality_status: result.validation.quality_status,
+          detector_count: result.validation.detector_count,
+          raw_image_persisted: false,
+          error: null
+        });
+        return sendJson(response, 200, result, requestId);
+      } catch (error) {
+        logIntentEvent("market_structure_detect", {
+          request_id: requestId,
+          latency_ms: Math.round(performance.now() - startedAt),
+          status_code: error.statusCode ?? 500,
+          detector_quality_status: null,
+          detector_count: 0,
+          raw_image_persisted: false,
           error: error.code ?? error.message ?? "internal_error"
         });
         throw error;

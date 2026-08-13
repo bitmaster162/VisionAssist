@@ -1,5 +1,9 @@
 import { createHash } from "node:crypto";
 import { validateIntentRecord } from "./intent-contract.js";
+import {
+  createUnknownDetectorReport,
+  validateMarketDetectorReport
+} from "./market-detector-contract.js";
 
 const MARKET_SCHEMA_VERSION = "visionassist.market_observation.v1";
 const MARKET_MODULE_IDENTITY = "TRADING_AGENT_VISUAL_PERCEPTION_LAYER";
@@ -106,6 +110,71 @@ function qualityFor(source, marketContext) {
   };
 }
 
+function sharedRefs(left = [], right = []) {
+  const rightSet = new Set(right);
+  return [...new Set(left.filter((item) => rightSet.has(item)))].sort();
+}
+
+function buildSceneGraph(visibleObservations, structureHypotheses) {
+  const nodes = [
+    ...visibleObservations.map((observation) => ({
+      id: `obs:${observation.id}`,
+      kind: "OBSERVATION",
+      semantic_type: "GENERIC_VISUAL_EVIDENCE",
+      label: observation.description,
+      evidence_refs: [...observation.evidence_refs],
+      confidence: null,
+      grounded: true
+    })),
+    ...structureHypotheses.map((hypothesis) => ({
+      id: `hyp:${hypothesis.id}`,
+      kind: "HYPOTHESIS",
+      semantic_type: "STRUCTURE_HYPOTHESIS",
+      label: hypothesis.description,
+      evidence_refs: [...hypothesis.evidence_refs],
+      confidence: hypothesis.confidence,
+      grounded: true
+    }))
+  ];
+
+  const edges = [];
+  for (const hypothesis of structureHypotheses) {
+    for (const observation of visibleObservations) {
+      const supportRefs = sharedRefs(observation.evidence_refs, hypothesis.evidence_refs);
+      if (supportRefs.length > 0) {
+        edges.push({
+          id: `edge:${edges.length + 1}`,
+          relation: "SUPPORTS",
+          from_node_id: `obs:${observation.id}`,
+          to_node_id: `hyp:${hypothesis.id}`,
+          evidence_refs: supportRefs
+        });
+      }
+
+      const contradictRefs = [
+        ...sharedRefs(observation.evidence_refs, hypothesis.counterevidence_refs),
+        ...(hypothesis.counterevidence_refs.includes(observation.id) ? [observation.id] : [])
+      ];
+      const uniqueContradictRefs = [...new Set(contradictRefs)].sort();
+      if (uniqueContradictRefs.length > 0) {
+        edges.push({
+          id: `edge:${edges.length + 1}`,
+          relation: "CONTRADICTS",
+          from_node_id: `obs:${observation.id}`,
+          to_node_id: `hyp:${hypothesis.id}`,
+          evidence_refs: uniqueContradictRefs
+        });
+      }
+    }
+  }
+
+  return {
+    schema_version: "visionassist.scene_graph.v1",
+    nodes,
+    edges
+  };
+}
+
 function renderCompactDigest(record) {
   const context = ["symbol", "venue", "timeframe"]
     .map((key) => {
@@ -115,10 +184,15 @@ function renderCompactDigest(record) {
     .join(" ");
   const strongest = [...record.structure_hypotheses]
     .sort((a, b) => b.confidence - a.confidence)[0];
+  const detectorDigest = record.detector_report.detectors
+    .map((item) => `${item.detector_type}=${item.status}`)
+    .join(" ");
 
   return [
     `[CONTEXT] ${context}`,
     `[HYPOTHESIS] ${strongest?.id ?? "UNKNOWN"} conf=${strongest?.confidence ?? "UNKNOWN"}`,
+    `[SCENE_GRAPH] nodes=${record.scene_graph.nodes.length} edges=${record.scene_graph.edges.length}`,
+    `[DETECTORS] ${detectorDigest}`,
     `[EVIDENCE] observations=${record.visible_observations.length} counterevidence=${record.counterevidence.length}`,
     `[UNCERTAINTY] count=${record.uncertainties.length}`,
     `[QUALITY] ${record.quality.status}`,
@@ -164,6 +238,11 @@ export function adaptIntentToMarketObservation(intentRecord, {
     invalidation_conditions: [...hypothesis.invalidation_conditions]
   }));
 
+  const sceneGraph = buildSceneGraph(visibleObservations, structureHypotheses);
+  const detectorReport = createUnknownDetectorReport({
+    requestId,
+    source
+  });
   const counterevidence = [...new Set(
     structureHypotheses.flatMap((hypothesis) => hypothesis.counterevidence_refs)
   )].sort();
@@ -177,6 +256,8 @@ export function adaptIntentToMarketObservation(intentRecord, {
     market_context: normalizedContext,
     visible_observations: visibleObservations,
     structure_hypotheses: structureHypotheses,
+    scene_graph: sceneGraph,
+    detector_report: detectorReport,
     counterevidence,
     uncertainties: [...intentRecord.uncertainties],
     alternative_explanations: [...intentRecord.alternative_explanations],
@@ -242,6 +323,45 @@ export function validateMarketObservation(record) {
     requireCondition(Array.isArray(hypothesis.invalidation_conditions) && hypothesis.invalidation_conditions.length > 0, `structure_hypotheses[${index}].invalidation_conditions required`);
   }
 
+  requireCondition(isObject(record.scene_graph), "scene_graph must be an object");
+  requireCondition(record.scene_graph.schema_version === "visionassist.scene_graph.v1", "scene_graph schema_version invalid");
+  requireCondition(Array.isArray(record.scene_graph.nodes) && record.scene_graph.nodes.length > 0, "scene_graph nodes required");
+  requireCondition(Array.isArray(record.scene_graph.edges), "scene_graph edges must be an array");
+
+  const nodeIds = new Set();
+  for (const [index, node] of record.scene_graph.nodes.entries()) {
+    requireCondition(isObject(node), `scene_graph.nodes[${index}] must be an object`);
+    requireCondition(isNonEmptyString(node.id), `scene_graph.nodes[${index}].id required`);
+    requireCondition(!nodeIds.has(node.id), `scene_graph.nodes[${index}].id must be unique`);
+    nodeIds.add(node.id);
+    requireCondition(node.kind === "OBSERVATION" || node.kind === "HYPOTHESIS", `scene_graph.nodes[${index}].kind invalid`);
+    requireCondition(isNonEmptyString(node.semantic_type), `scene_graph.nodes[${index}].semantic_type required`);
+    requireCondition(isNonEmptyString(node.label), `scene_graph.nodes[${index}].label required`);
+    requireCondition(Array.isArray(node.evidence_refs) && node.evidence_refs.length > 0, `scene_graph.nodes[${index}].evidence_refs required`);
+    requireCondition(node.grounded === true, `scene_graph.nodes[${index}] must be grounded`);
+    if (node.kind === "OBSERVATION") {
+      requireCondition(node.confidence === null, `scene_graph.nodes[${index}] observation confidence must be null`);
+    } else {
+      requireCondition(typeof node.confidence === "number" && node.confidence >= 0 && node.confidence <= 1, `scene_graph.nodes[${index}] hypothesis confidence invalid`);
+    }
+  }
+
+  const edgeIds = new Set();
+  for (const [index, edge] of record.scene_graph.edges.entries()) {
+    requireCondition(isObject(edge), `scene_graph.edges[${index}] must be an object`);
+    requireCondition(isNonEmptyString(edge.id) && !edgeIds.has(edge.id), `scene_graph.edges[${index}].id invalid`);
+    edgeIds.add(edge.id);
+    requireCondition(edge.relation === "SUPPORTS" || edge.relation === "CONTRADICTS", `scene_graph.edges[${index}].relation invalid`);
+    requireCondition(nodeIds.has(edge.from_node_id), `scene_graph.edges[${index}].from_node_id unknown`);
+    requireCondition(nodeIds.has(edge.to_node_id), `scene_graph.edges[${index}].to_node_id unknown`);
+    requireCondition(Array.isArray(edge.evidence_refs) && edge.evidence_refs.length > 0, `scene_graph.edges[${index}].evidence_refs required`);
+  }
+
+  requireCondition(isObject(record.detector_report), "detector_report must be an object");
+  const detectorValidation = validateMarketDetectorReport(record.detector_report);
+  requireCondition(detectorValidation.can_trade === false, "detector_report can_trade must be false");
+  requireCondition(detectorValidation.capital_permission === "DENY", "detector_report capital_permission must be DENY");
+
   requireCondition(Array.isArray(record.counterevidence), "counterevidence must be an array");
   requireCondition(Array.isArray(record.uncertainties) && record.uncertainties.length > 0, "uncertainties required");
   requireCondition(Array.isArray(record.alternative_explanations) && record.alternative_explanations.length > 0, "alternative explanations required");
@@ -264,6 +384,10 @@ export function validateMarketObservation(record) {
     quality_status: record.quality.status,
     observation_count: record.visible_observations.length,
     hypothesis_count: record.structure_hypotheses.length,
+    scene_node_count: record.scene_graph.nodes.length,
+    scene_edge_count: record.scene_graph.edges.length,
+    detector_count: record.detector_report.detectors.length,
+    detector_quality_status: record.detector_report.quality.status,
     decision_status: "DIAGNOSTIC_ONLY",
     execution_permission: "HOLD",
     capital_permission: "DENY",

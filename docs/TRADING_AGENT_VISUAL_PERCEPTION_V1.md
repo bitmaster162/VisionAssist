@@ -20,3 +20,9 @@ Safety remains server-controlled:
 - `can_trade=false`
 
 This milestone does not implement order execution, credentials, R:R policy, SensorBridge, R57 benchmark restart, OCR expansion, or deployment.
+
+## Scene graph v1
+
+The first market scene graph is deterministic and evidence-grounded. It creates only generic observation and hypothesis nodes from the already validated intent record, then derives `SUPPORTS` / `CONTRADICTS` edges only when evidence references overlap or an observation is explicitly named as counterevidence.
+
+This milestone deliberately does not claim liquidity, SFP, CHoCH, BOS, Fibonacci, or Elliott-wave nodes yet. Those semantic detector types require a later detector contract with explicit visual evidence and may return UNKNOWN/ABSTAIN.

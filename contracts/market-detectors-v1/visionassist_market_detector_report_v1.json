@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "visionassist.market_detector_report.v1",
+  "title": "VisionAssist Market Structure Detector Report",
+  "description": "Evidence-bound structural pattern candidates derived from visual market perception. This record is diagnostic only and never authorizes trading.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "const": "visionassist.market_detector_report.v1" },
+    "module_identity": { "type": "string", "const": "MARKET_STRUCTURE_DETECTOR_LAYER" },
+    "report_id": { "type": "string", "minLength": 1 },
+    "request_id": { "type": "string", "minLength": 1 },
+    "source_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_id": { "type": "string", "minLength": 1 },
+        "image_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "captured_at": { "type": ["string", "null"] }
+      },
+      "required": ["source_id", "image_sha256", "captured_at"]
+    },
+    "detectors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "detector_id": { "type": "string", "minLength": 1 },
+          "detector_type": {
+            "type": "string",
+            "enum": ["SFP", "CHOCH", "BOS", "SWEEP_RECLAIM"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["SUPPORTED", "CANDIDATE", "UNKNOWN", "REJECTED"]
+          },
+          "orientation": {
+            "type": "string",
+            "enum": ["UPSIDE", "DOWNSIDE", "NEUTRAL", "UNKNOWN"]
+          },
+          "description": { "type": ["string", "null"] },
+          "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+          "evidence_refs": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "counterevidence_refs": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "invalidation_conditions": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "level": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value": { "type": ["number", "null"] },
+              "provenance": {
+                "type": "string",
+                "enum": ["VISIBLE_LABEL", "DERIVED_FROM_VISIBLE_GEOMETRY", "UNKNOWN"]
+              }
+            },
+            "required": ["value", "provenance"]
+          },
+          "abstention_reason": { "type": ["string", "null"] }
+        },
+        "required": [
+          "detector_id", "detector_type", "status", "orientation", "description",
+          "confidence", "evidence_refs", "counterevidence_refs", "invalidation_conditions",
+          "level", "abstention_reason"
+        ]
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": { "type": "string", "enum": ["PASS", "REVISE", "ABSTAIN"] },
+        "reasons": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      },
+      "required": ["status", "reasons"]
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "decision_status": { "type": "string", "const": "DIAGNOSTIC_ONLY" },
+        "action_code": { "type": "string", "const": "NO_ACTION" },
+        "execution_permission": { "type": "string", "const": "HOLD" },
+        "capital_permission": { "type": "string", "const": "DENY" },
+        "can_trade": { "type": "boolean", "const": false }
+      },
+      "required": ["decision_status", "action_code", "execution_permission", "capital_permission", "can_trade"]
+    }
+  },
+  "required": [
+    "schema_version", "module_identity", "report_id", "request_id", "source_binding",
+    "detectors", "quality", "safety"
+  ]
+}
