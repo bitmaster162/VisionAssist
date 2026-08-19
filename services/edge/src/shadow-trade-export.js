@@ -91,8 +91,14 @@ export function exportVisualMarketEvidence(record) {
       signals_allowed: false
     }
   };
+  const evidenceSha256 = sha256Object(body);
   return {
     ...body,
-    evidence_sha256: sha256Object(body)
+    evidence_sha256: evidenceSha256,
+    trade_case_ref: {
+      source_id: body.source_id,
+      sha256: evidenceSha256,
+      schema: TRADINGOS_VISUAL_EVIDENCE_SCHEMA
+    }
   };
 }
