@@ -70,6 +70,11 @@ test("exports a compact TradingOS visual evidence object without action authorit
   assert.equal(exported.safety.can_trade, false);
   assert.equal(exported.safety.capital_permission, "DENY");
   assert.match(exported.evidence_sha256, /^[a-f0-9]{64}$/);
+  assert.deepEqual(exported.trade_case_ref, {
+    source_id: exported.source_id,
+    sha256: exported.evidence_sha256,
+    schema: "tradingos.visual_market_evidence.v1"
+  });
 });
 
 test("fails closed when required market context is unknown", () => {
