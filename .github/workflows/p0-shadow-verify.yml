@@ -6,7 +6,7 @@ on:
       - agent/trading-shadow-export-p0-r1
   pull_request:
     branches:
-      - agent/trading-agent-visual-perception-v1
+      - codex/r50-visionassist-operator-demo
 
 permissions:
   contents: read
