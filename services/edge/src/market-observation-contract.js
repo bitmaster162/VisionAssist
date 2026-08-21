@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import { validateIntentRecord } from "./intent-contract.js";
 import {
+  collectAllowedEvidenceRefs,
   createUnknownDetectorReport,
   validateMarketDetectorReport
 } from "./market-detector-contract.js";
@@ -358,7 +359,23 @@ export function validateMarketObservation(record) {
   }
 
   requireCondition(isObject(record.detector_report), "detector_report must be an object");
-  const detectorValidation = validateMarketDetectorReport(record.detector_report);
+  requireCondition(record.detector_report.request_id === record.request_id, "detector_report.request_id must match request_id");
+  requireCondition(isObject(record.detector_report.source_binding), "detector_report.source_binding must be an object");
+  requireCondition(
+    record.detector_report.source_binding.source_id === record.source.source_id,
+    "detector_report.source_binding.source_id must match source.source_id"
+  );
+  requireCondition(
+    String(record.detector_report.source_binding.image_sha256 ?? "").toLowerCase()
+      === String(record.source.image_sha256 ?? "").toLowerCase(),
+    "detector_report.source_binding.image_sha256 must match source.image_sha256"
+  );
+  requireCondition(
+    (record.detector_report.source_binding.captured_at ?? null) === (record.source.captured_at ?? null),
+    "detector_report.source_binding.captured_at must match source.captured_at"
+  );
+  const allowedEvidenceRefs = collectAllowedEvidenceRefs(record);
+  const detectorValidation = validateMarketDetectorReport(record.detector_report, { allowedEvidenceRefs });
   requireCondition(detectorValidation.can_trade === false, "detector_report can_trade must be false");
   requireCondition(detectorValidation.capital_permission === "DENY", "detector_report capital_permission must be DENY");
 

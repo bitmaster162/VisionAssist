@@ -98,3 +98,17 @@ test("fails closed if observation safety is widened", () => {
   observation.safety.can_trade = true;
   assert.throws(() => exportVisualMarketEvidence(observation));
 });
+
+test("fails closed before export if detector evidence was forged after model binding", () => {
+  const observation = adaptIntentToMarketObservation(safeIntent, {
+    requestId: "shadow-req-integrity",
+    imageSha256: "d".repeat(64),
+    marketContext: { symbol: "BTCUSDT", venue: "Binance", timeframe: "1h" }
+  });
+  observation.detector_report.detectors[0].evidence_refs = ["forged:shadow-evidence"];
+
+  assert.throws(
+    () => exportVisualMarketEvidence(observation),
+    /references unknown evidence: forged:shadow-evidence/
+  );
+});

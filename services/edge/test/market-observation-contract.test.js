@@ -60,6 +60,14 @@ const safeIntent = {
   can_trade: false
 };
 
+function makeRecord({ requestId = "req-market-integrity", imageSha256 = "e".repeat(64) } = {}) {
+  return adaptIntentToMarketObservation(safeIntent, {
+    requestId,
+    imageSha256,
+    marketContext: { symbol: "BTCUSDT", venue: "Binance", timeframe: "4h" }
+  });
+}
+
 test("market adapter preserves evidence and freezes execution permissions", () => {
   const record = adaptIntentToMarketObservation(safeIntent, {
     requestId: "req-market-001",
@@ -127,5 +135,50 @@ test("validator rejects unsupported market modality", () => {
       marketContext: { symbol: "BTCUSDT", venue: "Binance", timeframe: "4h" }
     }),
     /source.modality must be chart_image or dashboard/
+  );
+});
+
+test("validator rejects detector evidence outside the parent observation allowlist", () => {
+  const record = makeRecord();
+  record.detector_report.detectors[0].evidence_refs = ["forged:evidence-ref"];
+  assert.throws(
+    () => validateMarketObservation(record),
+    /references unknown evidence: forged:evidence-ref/
+  );
+});
+
+test("validator rejects detector request_id mismatch", () => {
+  const record = makeRecord();
+  record.detector_report.request_id = "req-other";
+  assert.throws(
+    () => validateMarketObservation(record),
+    /detector_report\.request_id must match request_id/
+  );
+});
+
+test("validator rejects detector source_id mismatch", () => {
+  const record = makeRecord();
+  record.detector_report.source_binding.source_id = "chart:other";
+  assert.throws(
+    () => validateMarketObservation(record),
+    /detector_report\.source_binding\.source_id must match source\.source_id/
+  );
+});
+
+test("validator rejects detector image_sha256 mismatch", () => {
+  const record = makeRecord();
+  record.detector_report.source_binding.image_sha256 = "f".repeat(64);
+  assert.throws(
+    () => validateMarketObservation(record),
+    /detector_report\.source_binding\.image_sha256 must match source\.image_sha256/
+  );
+});
+
+test("validator rejects detector captured_at mismatch", () => {
+  const record = makeRecord();
+  record.detector_report.source_binding.captured_at = "2026-08-14T00:00:01Z";
+  assert.throws(
+    () => validateMarketObservation(record),
+    /detector_report\.source_binding\.captured_at must match source\.captured_at/
   );
 });
