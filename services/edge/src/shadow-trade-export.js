@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { validateAgentConsumerEvidence } from "./agent-consumer-contract-v1.js";
 import { validateMarketObservation } from "./market-observation-contract.js";
 
 export const TRADINGOS_VISUAL_EVIDENCE_SCHEMA = "tradingos.visual_market_evidence.v1";
@@ -92,7 +93,7 @@ export function exportVisualMarketEvidence(record) {
     }
   };
   const evidenceSha256 = sha256Object(body);
-  return {
+  const exported = {
     ...body,
     evidence_sha256: evidenceSha256,
     trade_case_ref: {
@@ -101,4 +102,6 @@ export function exportVisualMarketEvidence(record) {
       schema: TRADINGOS_VISUAL_EVIDENCE_SCHEMA
     }
   };
+  validateAgentConsumerEvidence(exported);
+  return exported;
 }
