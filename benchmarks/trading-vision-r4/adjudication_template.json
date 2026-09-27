@@ -1,0 +1,30 @@
+{
+  "schema": "visionassist.trading_vision_r4_adjudication.v1",
+  "description": "Human/reference truth labels for semantic detector evaluation. Leave UNSCORABLE until an independent reviewer can ground the label from the controlled fixture definition or trusted annotation.",
+  "labels": [
+    {"case_id":"TV-C01","detector_type":"SFP","truth":"UNSCORABLE"},
+    {"case_id":"TV-C01","detector_type":"CHOCH","truth":"UNSCORABLE"},
+    {"case_id":"TV-C01","detector_type":"BOS","truth":"UNSCORABLE"},
+    {"case_id":"TV-C01","detector_type":"SWEEP_RECLAIM","truth":"UNSCORABLE"},
+    {"case_id":"TV-C02","detector_type":"SFP","truth":"UNSCORABLE"},
+    {"case_id":"TV-C02","detector_type":"CHOCH","truth":"UNSCORABLE"},
+    {"case_id":"TV-C02","detector_type":"BOS","truth":"UNSCORABLE"},
+    {"case_id":"TV-C02","detector_type":"SWEEP_RECLAIM","truth":"UNSCORABLE"},
+    {"case_id":"TV-C03","detector_type":"SFP","truth":"UNSCORABLE"},
+    {"case_id":"TV-C03","detector_type":"CHOCH","truth":"UNSCORABLE"},
+    {"case_id":"TV-C03","detector_type":"BOS","truth":"UNSCORABLE"},
+    {"case_id":"TV-C03","detector_type":"SWEEP_RECLAIM","truth":"UNSCORABLE"},
+    {"case_id":"TV-C04","detector_type":"SFP","truth":"UNSCORABLE"},
+    {"case_id":"TV-C04","detector_type":"CHOCH","truth":"UNSCORABLE"},
+    {"case_id":"TV-C04","detector_type":"BOS","truth":"UNSCORABLE"},
+    {"case_id":"TV-C04","detector_type":"SWEEP_RECLAIM","truth":"UNSCORABLE"},
+    {"case_id":"TV-C05","detector_type":"SFP","truth":"UNSCORABLE"},
+    {"case_id":"TV-C05","detector_type":"CHOCH","truth":"UNSCORABLE"},
+    {"case_id":"TV-C05","detector_type":"BOS","truth":"UNSCORABLE"},
+    {"case_id":"TV-C05","detector_type":"SWEEP_RECLAIM","truth":"UNSCORABLE"},
+    {"case_id":"TV-C06","detector_type":"SFP","truth":"UNSCORABLE"},
+    {"case_id":"TV-C06","detector_type":"CHOCH","truth":"UNSCORABLE"},
+    {"case_id":"TV-C06","detector_type":"BOS","truth":"UNSCORABLE"},
+    {"case_id":"TV-C06","detector_type":"SWEEP_RECLAIM","truth":"UNSCORABLE"}
+  ]
+}

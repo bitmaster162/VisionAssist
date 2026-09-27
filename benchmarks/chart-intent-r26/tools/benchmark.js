@@ -40,6 +40,7 @@ import {
   createCustodySnapshot,
   verifyCustodySnapshot
 } from "../src/custody-snapshot.js";
+import { verifyMarketInputR34 } from "../src/market-evidence-r34.js";
 
 const benchmarkRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -301,6 +302,14 @@ async function main() {
       }));
       break;
     }
+    case "verify-market-input-r34": {
+      const caseDirectory = requireArgument(
+        args[0],
+        "benchmark.js verify-market-input-r34 <case-directory>"
+      );
+      print(verifyMarketInputR34(path.resolve(caseDirectory)));
+      break;
+    }
     case "bootstrap-market-case": {
       const caseId = requireArgument(
         args[0],
@@ -475,7 +484,7 @@ async function main() {
     }
     default:
       throw new Error(
-        "Expected command: snapshot-custody, verify-custody, draft-human-prior, submit-human-prior, register-visual-pool, verify-visual-pool, verify-visual-corpus, bootstrap-visual-case, register-market-pool, verify-market-pool, verify-market-corpus, bootstrap-market-case, publish-market-case-receipt, status, prepare-case, run-ai, commit-outcome, freeze-case, freeze-stage, reveal, verify, or score."
+        "Expected command: snapshot-custody, verify-custody, draft-human-prior, submit-human-prior, register-visual-pool, verify-visual-pool, verify-visual-corpus, bootstrap-visual-case, register-market-pool, verify-market-pool, verify-market-corpus, verify-market-input-r34, bootstrap-market-case, publish-market-case-receipt, status, prepare-case, run-ai, commit-outcome, freeze-case, freeze-stage, reveal, verify, or score."
       );
   }
 }
@@ -484,7 +493,9 @@ main().catch((error) => {
   process.stderr.write(`${JSON.stringify({
     ok: false,
     code: error.code ?? "benchmark_command_failed",
-    error: error.message
+    error: error.message,
+    violations: error.violations,
+    receipt: error.receipt
   }, null, 2)}\n`);
   process.exitCode = 1;
 });

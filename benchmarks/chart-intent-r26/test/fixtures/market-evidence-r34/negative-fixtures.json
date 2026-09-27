@@ -1,0 +1,65 @@
+[
+  {
+    "fixture_id": "missing-oi",
+    "operation": "delete",
+    "path": [
+      "derivatives",
+      "open_interest"
+    ],
+    "expected_code": "MISSING_REQUIRED_CONTEXT"
+  },
+  {
+    "fixture_id": "post-cutoff-article",
+    "operation": "set",
+    "path": [
+      "events_and_articles",
+      "items",
+      0,
+      "updated_at"
+    ],
+    "value": "2026-07-28T08:01:00.000Z",
+    "expected_code": "POST_CUTOFF_DATA"
+  },
+  {
+    "fixture_id": "changed-ohlcv",
+    "operation": "increment",
+    "path": [
+      "price_and_volume",
+      "ohlcv",
+      "rows",
+      219,
+      "close"
+    ],
+    "value": 0.001,
+    "expected_code": "HASH_MISMATCH"
+  },
+  {
+    "fixture_id": "indicator-mismatch",
+    "operation": "increment",
+    "path": [
+      "deterministic_indicators",
+      "atr_14"
+    ],
+    "value": 1,
+    "expected_code": "DERIVED_MISMATCH"
+  },
+  {
+    "fixture_id": "outcome-artifact",
+    "operation": "write_file",
+    "relative_path": "outcome.json",
+    "value": {
+      "forbidden_test_artifact": true
+    },
+    "expected_code": "BLIND_MODE_VIOLATION"
+  },
+  {
+    "fixture_id": "can-trade-true",
+    "operation": "set",
+    "path": [
+      "authority",
+      "can_trade"
+    ],
+    "value": true,
+    "expected_code": "AUTHORITY_VIOLATION"
+  }
+]

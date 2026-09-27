@@ -1,0 +1,40 @@
+{
+  "schema_version": "visionassist.benchmark.visual-only-manifest-r34.v1",
+  "template_status": "INCOMPLETE_NOT_FREEZABLE",
+  "track": "SYNTHETIC_NON_MARKET_VISUAL_CONTROL",
+  "track_id": "VISUAL-CONTROL-R34",
+  "allowed_case_id_pattern": "^VIS-[0-9]{3}$",
+  "allowed_outcome_labels": [
+    "left_target",
+    "right_target",
+    "hold_position"
+  ],
+  "market_fields_forbidden": [
+    "symbol",
+    "venue",
+    "timeframe",
+    "ohlcv",
+    "market_cap",
+    "open_interest",
+    "funding_rate",
+    "up",
+    "down",
+    "range"
+  ],
+  "join_with_market_manifest_or_metric": false,
+  "prohibited_runs": {
+    "ai": true,
+    "fusion": true,
+    "baseline": true,
+    "reveal": true,
+    "adjudication": true,
+    "scoring": true
+  },
+  "authority": {
+    "decision_status": "DIAGNOSTIC_ONLY",
+    "action_code": "NO_ACTION",
+    "execution_permission": "HOLD",
+    "capital_permission": "DENY",
+    "can_trade": false
+  }
+}

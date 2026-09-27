@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "visionassist.benchmark.market-evidence-bundle-r34.schema.json",
+  "title": "VisionAssist R34 forward-locked market evidence bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "batch_id",
+    "track_id",
+    "case_id",
+    "capture_mode",
+    "timing",
+    "instrument",
+    "horizon",
+    "applicability_matrix",
+    "critical_group_status",
+    "source_group_registry",
+    "artifact_manifest",
+    "price_and_volume",
+    "token_metrics",
+    "derivatives",
+    "deterministic_indicators",
+    "events_and_articles",
+    "reference_market_and_regime",
+    "leakage_scan",
+    "authority"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "visionassist.benchmark.market-evidence-bundle-r34.v1"
+    },
+    "batch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "track_id": {
+      "const": "MARKET-R34"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^MKT-R34-[0-9]{3}$"
+    },
+    "capture_mode": {
+      "const": "FORWARD_LOCKED_FULL_CONTEXT"
+    },
+    "timing": {
+      "type": "object"
+    },
+    "instrument": {
+      "type": "object"
+    },
+    "horizon": {
+      "type": "object"
+    },
+    "applicability_matrix": {
+      "type": "object"
+    },
+    "critical_group_status": {
+      "type": "object"
+    },
+    "source_group_registry": {
+      "type": "array",
+      "minItems": 1
+    },
+    "artifact_manifest": {
+      "type": "array",
+      "minItems": 1
+    },
+    "price_and_volume": {
+      "type": "object"
+    },
+    "token_metrics": {
+      "type": "object"
+    },
+    "derivatives": {
+      "type": "object"
+    },
+    "deterministic_indicators": {
+      "type": "object"
+    },
+    "events_and_articles": {
+      "type": "object"
+    },
+    "reference_market_and_regime": {
+      "type": "object"
+    },
+    "leakage_scan": {
+      "type": "object"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    }
+  },
+  "$defs": {
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_status",
+        "action_code",
+        "execution_permission",
+        "capital_permission",
+        "can_trade"
+      ],
+      "properties": {
+        "decision_status": {
+          "const": "DIAGNOSTIC_ONLY"
+        },
+        "action_code": {
+          "const": "NO_ACTION"
+        },
+        "execution_permission": {
+          "const": "HOLD"
+        },
+        "capital_permission": {
+          "const": "DENY"
+        },
+        "can_trade": {
+          "const": false
+        }
+      }
+    }
+  }
+}

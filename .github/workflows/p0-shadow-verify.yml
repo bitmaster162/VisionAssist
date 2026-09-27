@@ -1,0 +1,27 @@
+name: P0 Shadow Verify
+
+on:
+  push:
+    branches:
+      - agent/trading-shadow-export-p0-r1
+  pull_request:
+    branches:
+      - codex/r50-visionassist-operator-demo
+
+permissions:
+  contents: read
+
+jobs:
+  offline-vision-shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax check shadow export
+        run: node --check services/edge/src/shadow-trade-export.js
+      - name: Run market observation and shadow export tests
+        run: |
+          node --test services/edge/test/market-observation-contract.test.js services/edge/test/shadow-trade-export.test.js
